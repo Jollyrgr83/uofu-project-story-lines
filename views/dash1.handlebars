@@ -1,0 +1,65 @@
+<head>
+    <title>story lines | {{title}}</title>
+    {{> main/head-block}}
+</head>
+<body class="lato max mx-auto">
+  <a href="/dash2/">Dashboard 2</a>
+  <header>
+    {{> main/nav-menu-block}}
+  </header>
+  <main>
+    <section class="section-container pri mx-auto">
+      <h1 class="title mx-auto">Welcome, Jane!</h2>
+    </section>
+    <section class="section-container sec mx-auto text-center">
+      <p class="section-title">Active Projects:</p>
+      <div class="dash-container row mx-auto">
+        <p class="section-item">Project 1 - [Name]</p>
+        <i class="dash-btn fa fa-arrow-right"></i>
+      </div>
+      <div class="dash-container row mx-auto">
+        <p class="section-item">Project 4 - [Name]</p>
+        <i class="dash-btn fa fa-chevron-circle-right"></i>
+      </div>
+      <div class="dash-container row mx-auto">
+        <p class="section-item">Project 11 - [Name]</p>
+        <i class="dash-btn fa fa-chevron-right"></i>
+      </div>           
+    </section>
+    <section class="section-container ter mx-auto text-center">
+      <p class="section-title">Active Stories:</p>
+      <select id="sort-select" class="mx-auto">
+        <option value="0">Sort by Project</option>
+        <option value="1">Sort by Due Date/Time Remaining</option>
+        <option value="2">Sort by Created Data/Age</option>
+        <option value="3">Sort by Reporter</option>
+        <option value="4">Sort by Assignee/Other Option</option>
+      </select>
+      <div class="dash-container row mx-auto">
+        <p class="dash-info red">1</p>
+        <p class="dash-item">Story 3 - Project 1</p>
+        <i class="dash-btn fa fa-arrow-right"></i>
+      </div>
+      <div class="dash-container row mx-auto">
+        <p class="dash-info yellow">2</p>
+        <p class="dash-item">Story 8 - Project 1</p>
+        <i class="dash-btn fa fa-arrow-circle-right"></i>
+      </div>
+      <div class="dash-container row mx-auto">
+        <p class="dash-info green">4</p>
+        <p class="dash-item">Story 9 - Project 1</p>
+        <i class="dash-btn fa fa-chevron-circle-right"></i>
+      </div>
+      <div class="dash-container row mx-auto">
+        <p class="dash-info green">7</p>
+        <p class="dash-item">Story 13 - Project 11</p>
+        <i class="dash-btn fa fa-angle-right"></i>
+      </div>
+      <div class="dash-container row mx-auto">
+        <p class="dash-info green">7</p>
+        <p class="dash-item">Story 19 - Project 11</p>
+        <i class="dash-btn fa fa-chevron-right"></i>
+      </div>
+  </section>
+  </main>
+</body>
