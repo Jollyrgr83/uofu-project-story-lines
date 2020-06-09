@@ -21,14 +21,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Requiring our routes
-require("./routes/html-routes.js")(app);;
+require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
-
-var str = 'single-quote';;
-
-var camelcasegonewrong = 'not';;
-
-var camel_case_gone_wrong = 'not';;
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
