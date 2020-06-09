@@ -30,6 +30,8 @@ var camelcasegonewrong = 'not';;
 
 var camel_case_gone_wrong = 'not';;
 
+var thing = "p";
+
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
