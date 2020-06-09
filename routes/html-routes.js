@@ -34,5 +34,4 @@ module.exports = function(app) {
   app.get("/dash2", isAuthenticated, (req, res) => {
     res.render("dash2", { title: "dashboard" });
   });
-
 };
