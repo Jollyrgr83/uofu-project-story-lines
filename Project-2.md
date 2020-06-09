@@ -41,10 +41,14 @@
 
 ## Team Members
 
-- Ahmed Jalal (GitHub username)
-- Natalie Michelsen (GitHub username)
+- Ahmed Jalal (ahmedjalal93)
+- Natalie Michelsen (nataliemichelsen)
 - Jason Mangin (Jollyrgr83)
-- Tyson Hintze (GitHub username)
+- Tyson Hintze (hintzetyson)
+
+## Project Ideas
+
+- Agile/Jira Project Management App
 
 ## New Technology Ideas
 
