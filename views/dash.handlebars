@@ -1,34 +1,32 @@
 <head>
     <title>story lines | {{title}}</title>
     {{> main/head-block}}
-    <!-- local style sheet -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/style2.css" />
 </head>
 <body class="lato max mx-auto">
-  <a href="/dash1/">Dashboard 1</a>
+  {{!-- <a href="/dash1/">Dashboard 1</a> --}}
   <header>
     {{> main/nav-menu-block}}
   </header>
   <main>
-    <section class="section-container pri mx-auto">
+    <section class="section-container2 pri mx-auto">
       <h1 class="title mx-auto">Welcome, Jane!</h2>
     </section>
-    <section class="section-container sec mx-auto text-center">
+    <section class="section-container2 sec mx-auto text-center">
       <p class="section-title">Active Projects:</p>
       <div class="dash-container row mx-auto">
         <p class="section-item">Project 1 - [Name]</p>
-        <i class="dash-btn fa fa-arrow-right"></i>
+        {{> dash/arrow }}
       </div>
       <div class="dash-container row mx-auto">
         <p class="section-item">Project 4 - [Name]</p>
-        <i class="dash-btn fa fa-chevron-circle-right"></i>
+        {{> dash/arrow }}
       </div>
       <div class="dash-container row mx-auto">
         <p class="section-item">Project 11 - [Name]</p>
-        <i class="dash-btn fa fa-chevron-right"></i>
+        {{> dash/arrow }}
       </div>           
     </section>
-    <section class="section-container ter mx-auto text-center">
+    <section class="section-container2 sec mx-auto text-center">
       <p class="section-title">Active Stories:</p>
       <select id="sort-select" class="mx-auto">
         <option value="0">Sort by Project</option>
@@ -40,27 +38,27 @@
       <div class="dash-container row mx-auto">
         <p class="dash-info red">1</p>
         <p class="dash-item">Story 3 - Project 1</p>
-        <i class="dash-btn fa fa-arrow-right"></i>
+        {{> dash/arrow }}
       </div>
       <div class="dash-container row mx-auto">
         <p class="dash-info yellow">2</p>
         <p class="dash-item">Story 8 - Project 1</p>
-        <i class="dash-btn fa fa-arrow-circle-right"></i>
+        {{> dash/arrow }}
       </div>
       <div class="dash-container row mx-auto">
         <p class="dash-info green">4</p>
         <p class="dash-item">Story 9 - Project 1</p>
-        <i class="dash-btn fa fa-chevron-circle-right"></i>
+        {{> dash/arrow }}
       </div>
       <div class="dash-container row mx-auto">
         <p class="dash-info green">7</p>
         <p class="dash-item">Story 13 - Project 11</p>
-        <i class="dash-btn fa fa-angle-right"></i>
+        {{> dash/arrow }}
       </div>
       <div class="dash-container row mx-auto">
         <p class="dash-info green">7</p>
         <p class="dash-item">Story 19 - Project 11</p>
-        <i class="dash-btn fa fa-chevron-right"></i>
+        {{> dash/arrow }}
       </div>
   </section>
   </main>
