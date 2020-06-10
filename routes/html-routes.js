@@ -27,11 +27,19 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
-  app.get("/dash1", isAuthenticated, (req, res) => {
-    res.render("dash1", { title: "dashboard" });
+  app.get("/dash", isAuthenticated, (req, res) => {
+    console.log("It worked");
+    res.render("dash", { title: "dashboard" });
   });
 
-  app.get("/dash2", isAuthenticated, (req, res) => {
-    res.render("dash2", { title: "dashboard" });
+  app.get("/add", isAuthenticated, (req, res) => {
+    console.log("It worked");
+    res.render("dash", { title: "dashboard" });
   });
+
+  app.get("/search", isAuthenticated, (req, res) => {
+    console.log("It worked");
+    res.render("dash", { title: "dashboard" });
+  });
+
 };
