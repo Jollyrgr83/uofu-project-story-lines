@@ -41,5 +41,4 @@ module.exports = function(app) {
     console.log("It worked");
     res.render("dash", { title: "dashboard" });
   });
-
 };
