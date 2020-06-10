@@ -66,3 +66,4 @@
 - Three.js - 3D animation
 - QUnit - A Javascript Unit Testing Framework
 - APIs
+- API to send text

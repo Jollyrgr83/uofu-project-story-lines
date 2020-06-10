@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Project-2 | Dashboard</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="./public/assets/images/logo-option-04.png" />
+    <!-- bootstrap style sheet -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Indie+Flower&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+    <!-- fontawesome library -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <!-- jQuery script for fontawesome to work with jQuery -->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" data-auto-replace-svg="nest"></script>    
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- local style sheet -->
+    <link rel="stylesheet" type="text/css" href="./public/assets/css/style.css" />
+    <!-- nav menu js script -->
+    <script type="text/javascript" src="./public/assets/js/nav-menu.js"></script>
+  </head>
+  <body class="lato max mx-auto">
+    <header>
+      <nav class="nav-bar com row mx-auto text-center">
+        <i class="nav-btn mx-auto fa fa-home" id="home"></i>
+        <i class="nav-btn mx-auto fa fa-plus" id="add"></i>
+        <i class="nav-btn mx-auto fa fa-search" id="browse"></i>
+      </nav>
+    </header>
+    <main>
+      <section class="section-container pri mx-auto">
+        <h1 class="title mx-auto">Welcome, Jane!</h2>
+      </section>
+      <section class="section-container sec mx-auto text-center">
+        <p class="section-title">Active Projects:</p>
+        <div class="dash-container row mx-auto">
+          <p class="section-item">Project 1 - [Name]</p>
+          <i class="dash-btn fa fa-arrow-right"></i>
+        </div>
+        <div class="dash-container row mx-auto">
+          <p class="section-item">Project 4 - [Name]</p>
+          <i class="dash-btn fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="dash-container row mx-auto">
+          <p class="section-item">Project 11 - [Name]</p>
+          <i class="dash-btn fa fa-chevron-right"></i>
+        </div>           
+      </section>
+      <section class="section-container ter mx-auto text-center">
+        <p class="section-title">Active Stories:</p>
+        <select id="sort-select" class="mx-auto">
+          <option value="0">Sort by Project</option>
+          <option value="1">Sort by Due Date/Time Remaining</option>
+          <option value="2">Sort by Created Data/Age</option>
+          <option value="3">Sort by Reporter</option>
+          <option value="4">Sort by Assignee/Other Option</option>
+        </select>
+        <div class="dash-container row mx-auto">
+          <p class="dash-info red">1</p>
+          <p class="dash-item">Story 3 - Project 1</p>
+          <i class="dash-btn fa fa-arrow-right"></i>
+        </div>
+        <div class="dash-container row mx-auto">
+          <p class="dash-info yellow">2</p>
+          <p class="dash-item">Story 8 - Project 1</p>
+          <i class="dash-btn fa fa-arrow-circle-right"></i>
+        </div>
+        <div class="dash-container row mx-auto">
+          <p class="dash-info green">4</p>
+          <p class="dash-item">Story 9 - Project 1</p>
+          <i class="dash-btn fa fa-chevron-circle-right"></i>
+        </div>
+        <div class="dash-container row mx-auto">
+          <p class="dash-info green">7</p>
+          <p class="dash-item">Story 13 - Project 11</p>
+          <i class="dash-btn fa fa-angle-right"></i>
+        </div>
+        <div class="dash-container row mx-auto">
+          <p class="dash-info green">7</p>
+          <p class="dash-item">Story 19 - Project 11</p>
+          <i class="dash-btn fa fa-chevron-right"></i>
+        </div>
+    </section>
+    </main>
+  </body>
+</html>
