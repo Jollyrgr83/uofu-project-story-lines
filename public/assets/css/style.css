@@ -24,6 +24,7 @@
   width: 95%;
   color: navy;
   height: 1.25em;
+  text-shadow: 7.5px 7.5px 7.5px lightslategray;
 }
 .auth-input:enabled, .auth-input:focus, .auth-input:active {
   outline: none;
