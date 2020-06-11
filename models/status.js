@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       states: {
         type: DataTypes.ENUM,
-        values: ["Todo", "In Progess", "Completed"]
+        values: ["Todo", "Blocked", "In Progess", "Completed"]
       }
     },
     {
