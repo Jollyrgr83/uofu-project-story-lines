@@ -1,26 +1,19 @@
 .max {
-  max-width: 500px;
-  box-shadow: 5px 5px 5px black;
-  background-color: whitesmoke;
-}
-/* color scheme classes: primary, secondary, tertiary */
-.pri {
-  color: gold;
-  background-color: navy;
-}
-.sec {
-  background-color: lightslategray;
-  color: navy;
-}
-.ter {
-  background-color: #0b3c5d;
-  color: #d9b310;
+  max-width: 400px;
+  background-color: rgba(119, 136, 153, 35%);
+  /* border: solid 1px lightslategray; */
+  /* border-radius: 5px; */
+  /* box-shadow: 1px 1px 5px lightslategray; */
 }
 /* navigation bar */
 .nav-bar {
   width: 100%;
   background-color: lightslategray;
   padding: 5px 0 5px 0;
+  margin: 10px;
+  width: 95%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px lightslategray;
 }
 .nav-btn {
   color: navy;
@@ -30,12 +23,25 @@
   cursor: pointer;
   opacity: 0.7;
 }
-.arrow {
+.arrow-btn {
   font-size: 24px;
   color: navy;
   margin: 0;
 }
+.arrow-btn:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
 /* page titles */
+.title-container {
+  padding: 10px;
+  margin: 10px;
+  width: 95%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px lightslategray;
+  color: gold;
+  background-color: navy;
+}
 .title {
   font-size: 22px;
   font-family: "Architects Daughter", cursive;
@@ -46,8 +52,12 @@
 /* section elements */
 .section-container {
   padding: 10px;
-  margin: 0;
-  width: 100%;
+  margin: 10px;
+  width: 95%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px lightslategray;
+  background-color: lightslategray;
+  color: navy;
 }
 .section-title {
   font-size: 20px;
@@ -65,7 +75,6 @@
   border: solid 1px navy;
   color: navy;
   background-color: whitesmoke;
-  box-shadow: 1px 1px 5px rgba(0, 0, 255, 50%);
   font-size: 16px;
 }
 /* dashboard elements */
@@ -116,21 +125,6 @@
   cursor: pointer;
   opacity: 0.7;
 }
-.button {
-  border: none;
-  border-radius: 5px;
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  padding: 5px 0 5px 0;
-  margin: 10px 0 10px 0;
-  width: 95%;
-  box-shadow: 5px 5px 5px black;
-}
-.button:hover, .button:focus {
-  outline: none;
-  opacity: 0.7;
-}
 select:enabled, select:focus, select:active {
   outline: none;
   border-radius: 5px;
@@ -143,12 +137,4 @@ select:enabled, select:focus, select:active {
   background-color: whitesmoke;
   color: navy;
   text-align: center;
-}
-/* section elements */
-.section-container2 {
-  padding: 10px;
-  margin: 10px;
-  width: 95%;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px black;
 }
