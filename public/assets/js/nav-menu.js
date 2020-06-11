@@ -8,7 +8,8 @@ $(() => {
       add: "/add/",
       search: "/search/",
       project: "/project/id/project_id",
-      arrow: "/story/"
+      arrow: "/story/",
+      logout: "/logout/"
     };
     if (routes[id]) {
       window.location.href = routes[id];
