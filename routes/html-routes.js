@@ -28,17 +28,18 @@ module.exports = function(app) {
   });
 
   app.get("/dash", isAuthenticated, (req, res) => {
-    console.log("It worked");
     res.render("dash", { title: "dashboard" });
   });
 
   app.get("/add", isAuthenticated, (req, res) => {
-    console.log("It worked");
-    res.render("dash", { title: "dashboard" });
+    res.render("dash", { title: "add" });
   });
 
   app.get("/search", isAuthenticated, (req, res) => {
-    console.log("It worked");
-    res.render("dash", { title: "dashboard" });
+    res.render("dash", { title: "search" });
+  });
+
+  app.get("/story", isAuthenticated, (req, res) => {
+    res.render("story", { title: "story" });
   });
 };
