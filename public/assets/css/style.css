@@ -166,6 +166,7 @@ svg > * {
   font-size: 16px;
   box-shadow: 1px 1px 5px navy;
   text-align: start;
+  width: 95%;
 }
 .dash-project {
   width: 85%;

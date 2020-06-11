@@ -30,14 +30,18 @@ module.exports = function(app) {
   });
 
   app.get("/add", isAuthenticated, (req, res) => {
-    res.render("dash", { title: "add" });
+    res.render("add", { title: "add" });
   });
 
   app.get("/search", isAuthenticated, (req, res) => {
-    res.render("dash", { title: "search" });
+    res.render("search", { title: "search" });
   });
 
   app.get("/story", isAuthenticated, (req, res) => {
     res.render("story", { title: "story" });
+  });
+
+  app.get("/project", isAuthenticated, (req, res) => {
+    res.render("project", { title: "project" });
   });
 };
