@@ -1,33 +1,52 @@
+/* body sizing and background*/
 .max {
-  max-width: 400px;
+  max-width: 375px;
   background-color: rgba(119, 136, 153, 35%);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
 }
-/* navigation bar */
+/* navigation bar and other page buttons */
 .nav-bar {
-  width: 100%;
-  background-color: lightslategray;
-  padding: 5px 0 5px 0;
-  margin: 10px;
   width: 95%;
+  margin: 10px;
+  padding: 5px 0 5px 0;
   border-radius: 5px;
+  background-color: lightslategray;
   box-shadow: 2px 2px 5px lightslategray;
 }
 .nav-btn {
   color: navy;
-  font-size: 22px;
-}
-.nav-btn:hover {
-  cursor: pointer;
-  opacity: 0.7;
+  font-size: 24px;
 }
 .arrow-btn {
-  font-size: 24px;
   color: navy;
+  font-size: 24px;
   margin: 0;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 5px navy;
 }
-.arrow-btn:hover {
+.story-btn {
+  color: navy;
+  font-size: 18px;
+  padding: 5px;
+  margin: 0;
+  border-radius: 5px;
+  height: 2em;
+  width: 2em;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 5px navy;
+}
+.nav-btn:hover, .arrow-btn:hover, .story-btn:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+/* prevents mouse clicks on child elements for vector icons */
+i > * {
+  pointer-events: none;
+}
+svg > * {
+  pointer-events: none;
 }
 /* page titles */
 .title-container {
@@ -36,13 +55,12 @@
   width: 95%;
   border-radius: 5px;
   box-shadow: 2px 2px 5px lightslategray;
-  color: gold;
+  color: lightgray;
   background-color: navy;
 }
 .title {
   font-size: 22px;
-  font-family: "Architects Daughter", cursive;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   margin: 0;
 }
@@ -58,80 +76,116 @@
 }
 .section-title {
   font-size: 20px;
-  font-family: "Architects Daughter", cursive;
-  font-weight: 400;
   text-align: start;
   margin: 0;
   color:navy;
+  height: 2.25em;
+  width: 88%;
 }
 .section-item {
-  width: 85%;
   margin-right: 10px;
   padding: 5px;
   border-radius: 5px;
-  border: solid 1px navy;
   color: navy;
   background-color: whitesmoke;
   font-size: 16px;
+  box-shadow: 1px 1px 5px navy;
+  height: 2.25em;
 }
-/* dashboard elements */
-.dash-container {
+.story-details {
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: navy;
+  background-color: whitesmoke;
+  font-size: 16px;
+  box-shadow: 1px 1px 5px navy;
+  text-align: start;
+}
+.dash-project {
+  width: 85%;
+}
+.dash-day {
+  width: 11.5%;
+}
+.dash-story {
+  width: 70.5%;
+  overflow: auto;
+}
+.story-info {
+  width: 48%;
+}
+.task {
+  width: 71%;
+}
+.row-container {
   width: 95%;
   padding: 0;
-  margin: 10px 0 10px 0;
+  margin: 0 0 0 0;
 }
-.dash-info {
-  width: 11.5%;
+.subtitle {
+  margin: 0;
   padding: 5px;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-right: 7.5px;
-  color:navy;
-  background-color: whitesmoke;
-}
-.dash-item {
-  width: 72%;
-  margin-right: 7.5px;
-  padding: 5px;
-  border-radius: 5px;
-  border: solid 1px navy;
   color: navy;
-  background-color: whitesmoke;
   font-size: 16px;
 }
+/* color-coding for time-related elements */
 .red {
-  border: solid 2px #e60000;
-  background-color: lightslategray;
+  background-color: rgba(255, 0, 0, 60%);
 }
 .yellow {
-  border: solid 2px gold;
-  background-color: lightslategray;
+  background-color: rgba(255, 215, 0, 60%);
 }
 .green {
-  border: solid 2px limegreen;
-  background-color: lightslategray;
+  background-color: rgba(50, 205, 50, 60%);
 }
-.dash-btn {
-  color: navy;
-  font-size: 22px;
-  margin: 0;
-  padding: 6px 0 0 0;
-  line-height: 1.0;
-}
-.dash-btn:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
+/* user input elements */
 select:enabled, select:focus, select:active {
   outline: none;
   border-radius: 5px;
   border: none;
   font-size: 16px;
   width: 95%;
-  margin: 10px 0 10px 0;
+  margin: 0 0 10px 0;
   padding: 5px 0 5px 0;
   box-shadow: 1px 1px 5px navy;
   background-color: whitesmoke;
   color: navy;
   text-align: center;
+  height: 2.25em;
+}
+.status-select:enabled, .status-select:focus, .status-select:active {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 20%;
+  margin-right: 10px;
+  padding: 5px 0 5px 0;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+  height: 2.25em;
+}
+input:enabled, input:focus, input:active {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 60%;
+  margin-right: 10px;
+  padding: 5px 0 5px 0;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+  height: 2.25em;
+}
+/* used in dynamically rendered elements */
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
