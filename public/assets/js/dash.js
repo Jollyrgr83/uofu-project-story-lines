@@ -24,6 +24,7 @@ $(() => {
     const numID = parseInt(arrowID.split("-")[1]);
     const textID = arrowID.split("-")[0];
     console.log("textID", textID);
+    console.log("numID", numID);
     if (textID === "arrowProject") {
       window.location.href = "/project/";
     } else if (textID === "arrowStory") {
@@ -31,7 +32,7 @@ $(() => {
     }
   });
   // event listener for sort select dropdown menu
-  $("#sort-select").on("change", event => {
+  $("#sort-select").on("change", () => {
     activeStories();
   });
   // renders the active projects section
@@ -83,6 +84,7 @@ $(() => {
 
   function activeStories() {
     const sortID = parseInt($("#sort-select").val());
+    console.log("sortID", sortID);
     $("#dynamic-story").empty();
     for (let i = 0; i < db.stories.length; i++) {
       // const divEl;
