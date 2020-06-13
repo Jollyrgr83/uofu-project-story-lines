@@ -8,19 +8,19 @@ module.exports = function(app) {
   app.get("/", (req, res) => {
     // If the user already has an account send them to the dashboard page
     if (req.user) {
-      res.redirect("/dash");
+      return res.redirect("/dash");
     }
-    // res.sendFile(path.join(__dirname, "../public/signup.html"));
-    res.render("auth-signup", { title: "signup" });
+
+    return res.render("auth-signup", { title: "signup" });
   });
 
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the dashboard page
     if (req.user) {
-      res.redirect("/dash");
+      return res.redirect("/dash");
     }
-    // res.sendFile(path.join(__dirname, "../public/login.html"));
-    res.render("auth-login", { title: "login" });
+
+    return res.render("auth-login", { title: "login" });
   });
 
   // Here we've add our isAuthenticated middleware to this route.
