@@ -2,13 +2,6 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
-// require express, router, and fs for
-// require model for 
-const express = require("express");
-const router = express.Router();
-const model = require("");
-const fs = require("fs");
-
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -58,34 +51,3 @@ module.exports = function(app) {
     }
   });
 };
-
-
-// include queries to & from database
-// get pulling data
-// put change existing
-// post add new
-// delete existing
-// module.specificmethod
-
-
-// get example 
-router.get("", (req, res) => {
-  model.("", data => res.json(data));
-});
-
-// post example 
-router.post("", (req, res) => {
-  model.(req.body, data => res.json(data));
-});
-
-// put example
-router.put("", (req, res) => {
-  model.(req.body, data => res.json(data));
-});
-
-// delete example
-router.delete("", (req, res) => {
-  model.(req.body, data => res.json(data));
-});
-
-module.exports = router;
