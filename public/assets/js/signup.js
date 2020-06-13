@@ -3,30 +3,45 @@ $(document).ready(() => {
   const signUpForm = $("#signup-form");
   const emailInput = $("#email-input");
   const passwordInput = $("#password-input");
+  const nameInput = $("#name-input");
+  const phoneInput = $("#phone-input");
+  const roleInput = $("#role-select");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", event => {
     event.preventDefault();
     const userData = {
       email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      password: passwordInput.val().trim(),
+      name: nameInput.val().trim(),
+      phone: phoneInput.val(),
+      role: parseInt(roleInput.val())
     };
 
     if (!userData.email || !userData.password) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
+    signUpUser(
+      userData.email,
+      userData.password,
+      userData.name,
+      userData.phone,
+      userData.role
+    );
     emailInput.val("");
     passwordInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the dashboard page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
+  function signUpUser(email, password, name, phone, role) {
     $.post("/api/signup", {
       email: email,
-      password: password
+      password: password,
+      name: name,
+      phone: phone,
+      role: role
     })
       .then(() => {
         window.location.replace("/dash");
@@ -36,6 +51,7 @@ $(document).ready(() => {
   }
 
   function handleLoginErr(err) {
+    console.log(err.responseJSON);
     $("#alert .msg").text(err.responseJSON);
     $("#alert").fadeIn(500);
   }

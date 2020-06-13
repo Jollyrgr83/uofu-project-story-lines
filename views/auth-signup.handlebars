@@ -2,10 +2,11 @@
     <title>story lines | {{title}}</title>
     {{> main/head-block}}
     <script type="text/javascript" src="/assets/js/signup.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 </head>
 <body class="max mx-auto">
   <header>
-    <p class="logo mx-auto">S</p>
+    <p class="animate__animated animate__heartBeat" id="logo">S</p>
     <section class="title-container mx-auto">
       <h1 class="auth-title mx-auto">story lines</h1>
     </section>
@@ -17,6 +18,16 @@
       <input id="email-input" class="auth-input mx-auto" type="email" />
       <label class="auth-subtitle" for="signupPasswordInput">password</label>
       <input id="password-input" class="auth-input mx-auto" type="password" />
+      <label class="auth-subtitle" for="signupNameInput">name</label>
+      <input id="name-input" class="auth-input mx-auto" type="text" />
+      <label class="auth-subtitle" for="signupPhoneInput">phone number</label>
+      <input id="phone-input" class="auth-input mx-auto" type="tel" />
+      <label class="auth-subtitle" for="signupRoleInput">role</label>
+      <select id="role-select" class="auth-input mx-auto">
+        <option value="0">Owner</option>
+        <option value="1">Manager</option>
+        <option value="2">Employee</option>
+      </select>
       <div style="display: none" id="alert" class="alert alert-danger" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span> <span class="msg"></span>

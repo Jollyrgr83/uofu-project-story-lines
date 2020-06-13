@@ -22,7 +22,7 @@
   height: 2.25em;
   width: 95%;
 }
-.logo {
+#logo {
   font-size: 144px;
   font-family: "Indie Flower", cursive;
   margin: 0;
@@ -97,7 +97,7 @@
   font-size: 24px;
   margin: 0;
   border-radius: 5px;
-  background-color: whitesmoke;
+  background-color: lightgray;
   box-shadow: 1px 1px 5px navy;
 }
 .story-btn {
@@ -249,6 +249,20 @@ select:enabled, select:focus, select:active {
   border: none;
   font-size: 16px;
   width: 60%;
+  margin-right: 10px;
+  padding: 5px 0 5px 0;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+  height: 2.25em;
+}
+.search-input-element:enabled, .search-input-element:focus, .search-input-element:active {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 84%;
   margin-right: 10px;
   padding: 5px 0 5px 0;
   box-shadow: 1px 1px 5px navy;
