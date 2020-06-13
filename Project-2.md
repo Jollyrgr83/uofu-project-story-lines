@@ -2,14 +2,14 @@
 
 ## Project Requirements
 
-☐ Must use a Node and Express web server
+✓ Must use a Node and Express web server
 ☐ Must be backed by a MySQL database with a Sequelize ORM
-☐ Must have both GET and POST routes for retrieving and adding new data
+✓ Must have both GET and POST routes for retrieving and adding new data
 ✓ Must be deployed using Heroku (with data) 
-☐ Must utilize at least one new library, package, or technology (APIs count) that we haven't discussed
-☐ Must have a polished front end U/I
+☐ Must utilize at least one new library, package, or technology (APIs count) that we haven't discussed (animate.css for logo)
+✓ Must have a polished front end U/I
 ✓ Must have a folder structure that meets the MVC paradigm
-☐ Must meed good-quality coding standards (indentation, scoping, naming, etc.)
+✓ Must meed good-quality coding standards (indentation, scoping, naming, etc.)
 ☐ Must protect API keys in Node with environment variables
 
 ## Not Required But Nice to Have
@@ -23,8 +23,8 @@
 
 ✓ Concept
 ✓ Design
-☐ Functionality
-☐ Collaboration
+✓ Functionality
+✓ Collaboration
 ☐ Presentation
 
 ## Presentation Requirements
@@ -66,5 +66,5 @@
 - Three.js - 3D animation
 - QUnit - A Javascript Unit Testing Framework
 - APIs
-- API to send text
-- animate S on login screen
+- API to send text(Google Authenticator)
+- animate S on login screen (After Effects & Animate.css)
