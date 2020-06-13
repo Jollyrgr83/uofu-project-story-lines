@@ -15,20 +15,29 @@ module.exports = function(sequelize, DataTypes) {
     // The password cannot be null
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 6
+      }
     },
 
     //NOTE: Adding these values broke the login process - we will have to look closer at how to integrate them
 
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1, 255]
+      }
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      is: /^[0-9+-]$/gi
+      is: /^[0-9+-]$/gi,
+      validate: {
+        len: [9, 16]
+      }
     },
     role: {
       type: DataTypes.INTEGER,

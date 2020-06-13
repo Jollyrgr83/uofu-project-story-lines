@@ -59,10 +59,12 @@ $(document).ready(() => {
   }
 
   function handleLoginErr(err) {
-    console.log(err.responseJSON);
+    console.log(err.responseJSON.errors);
     $("#alert .msg").empty();
-    for (error in err.responseJSON.errors) {
-      $("#alert .msg").append(err.responseJSON);
+    for (const i in err.responseJSON.errors) {
+      $("#alert .msg").append(
+        `<span>${err.responseJSON.errors[i].message}</span><br/>`
+      );
     }
     $("#alert").fadeIn(500);
   }
