@@ -15,77 +15,14 @@
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Projects</p>
       <div id="dynamic-project"></div>
-      {{!-- <div class="row-container row mx-auto">
-        <p class="section-item dash-project">Project 1 - [Name]</p>
-        <svg id="arrowProject" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-project">Project 4 - [Name]</p>
-        <svg id="arrowProject" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-project">Project 11 - [Name]</p>
-        <svg id="arrowProject" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>            --}}
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Stories</p>
       <select id="sort-select" class="mx-auto">
-        <option value="0">Sort by Due Date/Time Remaining</option>
-        <option value="1">Sort by Created Data/Age</option>
-        <option value="2">Sort by Reporter</option>
-        <option value="3">Sort by Assignee/Other Option</option>
+        <option value="0">Sort by Days Left</option>
+        <option value="1">Sort by Age</option>
       </select>
       <div id="dynamic-story"></div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day red">1</p>
-        <p class="section-item dash-story">Story 3 - Project 1</p>
-        <svg id="arrowStory" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day yellow">2</p>
-        <p class="section-item dash-story">Story 8 - Project 1</p>
-        <svg id="arrowStory" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day green">4</p>
-        <p class="section-item dash-story">Story 9 - Project 1</p>
-        <svg id="arrowStory" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day green">7</p>
-        <p class="section-item dash-story">Story 13 - Project 11</p>
-        <svg id="arrowStory" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day green">7</p>
-        <p class="section-item dash-story">Story 19 - Project 11</p>
-        <svg id="arrowStory" class="arrow-btn bi bi-arrow-right-short" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"/>
-        </svg>
-      </div>
   </section>
   </main>
 </body>
