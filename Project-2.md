@@ -2,30 +2,30 @@
 
 ## Project Requirements
 
-- Must use a Node and Express web server
-- Must be backed by a MySQL database with a Sequelize ORM
-- Must have both GET and POST routes for retrieving and adding new data
-- Must be deployed using Heroku (with data)
-- Must utilize at least one new library, package, or technology (APIs count) that we haven't discussed
-- Must have a polished front end U/I
-- Must have a folder structure that meets the MVC paradigm
-- Must meed good-quality coding standards (indentation, scoping, naming, etc.)
-- Must protect API keys in Node with environment variables
+✓ Must use a Node and Express web server
+☐ Must be backed by a MySQL database with a Sequelize ORM
+✓ Must have both GET and POST routes for retrieving and adding new data
+✓ Must be deployed using Heroku (with data) 
+☐ Must utilize at least one new library, package, or technology (APIs count) that we haven't discussed (animate.css for logo)
+✓ Must have a polished front end U/I
+✓ Must have a folder structure that meets the MVC paradigm
+✓ Must meed good-quality coding standards (indentation, scoping, naming, etc.)
+☐ Must protect API keys in Node with environment variables
 
 ## Not Required But Nice to Have
 
-- Utilize Handlebars for server-side templating
-- Incorporate authentication (JSON Web Tokens, sessions, etc.)
-- Use an existing public dataset to power the database
-- Create a migration strategy for sharing data across team members (e.g. a seed/schema.sql file)
+✓ Utilize Handlebars for server-side templating
+☐ Incorporate authentication (JSON Web Tokens, sessions, etc.)
+☐ Use an existing public dataset to power the database
+✓ Create a migration strategy for sharing data across team members (e.g. a seed/schema.sql file)
 
 ## Metrics
 
-- Concept
-- Design
-- Functionality
-- Collaboration
-- Presentation
+✓ Concept
+✓ Design
+✓ Functionality
+✓ Collaboration
+☐ Presentation
 
 ## Presentation Requirements
 
@@ -66,4 +66,5 @@
 - Three.js - 3D animation
 - QUnit - A Javascript Unit Testing Framework
 - APIs
-- API to send text
+- API to send text(Google Authenticator)
+- animate S on login screen (After Effects & Animate.css)
