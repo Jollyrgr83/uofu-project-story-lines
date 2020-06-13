@@ -12,13 +12,13 @@ const nodemailer = require("nodemailer");
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
-// app.use((req, res, next) => {
-//   res.set(
-//     "Cache-Control",
-//     "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
-//   );
-//   next();
-// });
+app.use((req, res, next) => {
+  res.set(
+    "Cache-Control",
+    "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
+  );
+  next();
+});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -60,7 +60,7 @@ const mailOptions = {
 // });
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
