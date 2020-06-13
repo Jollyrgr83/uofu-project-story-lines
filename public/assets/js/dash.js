@@ -49,6 +49,49 @@ $(() => {
       $("#dynamic-project").append(rowEl);
     }
   }
+  // renders the active stories section
+  function activeStories() {
+    const sortID = $("#sort-select").val();
+    // sorts db.stories based on sort-select input
+    if (sortID === "0") {
+      db.stories.sort(compareDue);
+      console.log("stories - due", db.stories);
+    } else if (sortID === "1") {
+      db.stories.sort(compareAge);
+      console.log("stories - age", db.stories);
+    }
+    $("#dynamic-story").empty();
+    for (let i = 0; i < db.stories.length; i++) {
+      const rowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
+      const pStoryEl = htmlEl("p", ["section-item dash-story", "none"]);
+      pStoryEl.text(
+        `Project ${db.stories[i].projectID} - Story ${db.stories[i].id}`
+      );
+      const svgEl = arrowBtn(`arrowStory-${db.stories[i].id}`);
+      let dayVal = 0;
+      if (sortID === "0") {
+        dayVal = db.stories[i].due;
+      } else if (sortID === "1") {
+        dayVal = db.stories[i].age;
+      }
+      let dayClass = "";
+      if (dayVal <= 1) {
+        dayClass = "section-item dash-day red";
+      } else {
+        if (dayVal <= 3) {
+          dayClass = "section-item dash-day yellow";
+        } else {
+          dayClass = "section-item dash-day green";
+        }
+      }
+      const pDayEl = htmlEl("p", [dayClass, "none"]);
+      pDayEl.text(dayVal);
+      rowEl.append(pDayEl);
+      rowEl.append(pStoryEl);
+      rowEl.append(svgEl);
+      $("#dynamic-story").append(rowEl);
+    }
+  }
   // generates arrowBtn svg elements
   function arrowBtn(inputID) {
     const svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -98,48 +141,5 @@ $(() => {
   // used in the sort method to sort by age
   function compareAge(a, b) {
     return a.age > b.age ? 1 : -1;
-  }
-  // renders the active stories section
-  function activeStories() {
-    const sortID = $("#sort-select").val();
-    // sorts db.stories based on sort-select input
-    if (sortID === "0") {
-      db.stories.sort(compareDue);
-      console.log("stories - due", db.stories);
-    } else if (sortID === "1") {
-      db.stories.sort(compareAge);
-      console.log("stories - age", db.stories);
-    }
-    $("#dynamic-story").empty();
-    for (let i = 0; i < db.stories.length; i++) {
-      const rowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-      const pStoryEl = htmlEl("p", ["section-item dash-story", "none"]);
-      pStoryEl.text(
-        `Project ${db.stories[i].projectID} - Story ${db.stories[i].id}`
-      );
-      const svgEl = arrowBtn(`arrowStory-${db.stories[i].id}`);
-      let dayVal = 0;
-      if (sortID === "0") {
-        dayVal = db.stories[i].due;
-      } else if (sortID === "1") {
-        dayVal = db.stories[i].age;
-      }
-      let dayClass = "";
-      if (dayVal <= 1) {
-        dayClass = "section-item dash-day red";
-      } else {
-        if (dayVal <= 3) {
-          dayClass = "section-item dash-day yellow";
-        } else {
-          dayClass = "section-item dash-day green";
-        }
-      }
-      const pDayEl = htmlEl("p", [dayClass, "none"]);
-      pDayEl.text(dayVal);
-      rowEl.append(pDayEl);
-      rowEl.append(pStoryEl);
-      rowEl.append(svgEl);
-      $("#dynamic-story").append(rowEl);
-    }
   }
 });

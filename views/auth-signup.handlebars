@@ -18,6 +18,16 @@
       <input id="email-input" class="auth-input mx-auto" type="email" />
       <label class="auth-subtitle" for="signupPasswordInput">password</label>
       <input id="password-input" class="auth-input mx-auto" type="password" />
+      <label class="auth-subtitle" for="signupNameInput">name</label>
+      <input id="name-input" class="auth-input mx-auto" type="text" />
+      <label class="auth-subtitle" for="signupPhoneInput">phone number</label>
+      <input id="phone-input" class="auth-input mx-auto" type="tel" />
+      <label class="auth-subtitle" for="signupRoleInput">role</label>
+      <select id="role-select" class="auth-input mx-auto">
+        <option value="0">Owner</option>
+        <option value="1">Manager</option>
+        <option value="2">Employee</option>
+      </select>
       <div style="display: none" id="alert" class="alert alert-danger" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span> <span class="msg"></span>
