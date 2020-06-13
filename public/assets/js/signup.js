@@ -18,7 +18,15 @@ $(document).ready(() => {
       role: parseInt(roleInput.val())
     };
 
-    if (!userData.email || !userData.password) {
+    if (
+      !userData.email ||
+      !userData.password ||
+      !userData.name ||
+      !userData.phone ||
+      !userData.role
+    ) {
+      $("#alert .msg").text("Missing user details");
+      $("#alert").fadeIn(500);
       return;
     }
     // If we have an email and password, run the signUpUser function
@@ -51,8 +59,13 @@ $(document).ready(() => {
   }
 
   function handleLoginErr(err) {
-    console.log(err.responseJSON);
-    $("#alert .msg").text(err.responseJSON);
+    console.log(err.responseJSON.errors);
+    $("#alert .msg").empty();
+    for (const i in err.responseJSON.errors) {
+      $("#alert .msg").append(
+        `<span>${err.responseJSON.errors[i].message}</span><br/>`
+      );
+    }
     $("#alert").fadeIn(500);
   }
 });
