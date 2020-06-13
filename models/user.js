@@ -17,9 +17,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-
-    //NOTE: Adding these values broke the login process - we will have to look closer at how to integrate them
-
     name: {
       type: DataTypes.STRING,
       allowNull: false

@@ -39,7 +39,13 @@ $(() => {
     // renders the active projects section
     function activeProjects() {
       $("#project-results").empty();
-      console.log("db.projects", db.projects);
+      const sectionEl = htmlEl("section", [
+        "section-container mx-auto text-center",
+        "none"
+      ]);
+      const sectionTitleEl = htmlEl("p", ["section-title", "none"]);
+      sectionTitleEl.text("Projects");
+      sectionEl.append(sectionTitleEl);
       for (let i = 0; i < db.projects.length; i++) {
         const rowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
         const pEl = htmlEl("p", ["section-item dash-project", "none"]);
@@ -47,21 +53,21 @@ $(() => {
         const svgEl = arrowBtn(`arrowProject-${db.projects[i].id}`);
         rowEl.append(pEl);
         rowEl.append(svgEl);
-        $("#project-results").append(rowEl);
+        sectionEl.append(rowEl);
       }
+      $("#project-results").append(sectionEl);
     }
     // renders the active stories section
     function activeStories() {
-      const sortID = $("#sort-select").val();
-      // sorts db.stories based on sort-select input
-      if (sortID === "0") {
-        db.stories.sort(compareDue);
-        console.log("stories - due", db.stories);
-      } else if (sortID === "1") {
-        db.stories.sort(compareAge);
-        console.log("stories - age", db.stories);
-      }
+      db.stories.sort(compareDue);
       $("#story-results").empty();
+      const sectionEl = htmlEl("section", [
+        "section-container mx-auto text-center",
+        "none"
+      ]);
+      const sectionTitleEl = htmlEl("p", ["section-title", "none"]);
+      sectionTitleEl.text("Stories");
+      sectionEl.append(sectionTitleEl);
       for (let i = 0; i < db.stories.length; i++) {
         const rowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
         const pStoryEl = htmlEl("p", ["section-item dash-story", "none"]);
@@ -69,12 +75,7 @@ $(() => {
           `Project ${db.stories[i].projectID} - Story ${db.stories[i].id}`
         );
         const svgEl = arrowBtn(`arrowStory-${db.stories[i].id}`);
-        let dayVal = 0;
-        if (sortID === "0") {
-          dayVal = db.stories[i].due;
-        } else if (sortID === "1") {
-          dayVal = db.stories[i].age;
-        }
+        const dayVal = db.stories[i].due;
         let dayClass = "";
         if (dayVal <= 1) {
           dayClass = "section-item dash-day red";
@@ -90,8 +91,9 @@ $(() => {
         rowEl.append(pDayEl);
         rowEl.append(pStoryEl);
         rowEl.append(svgEl);
-        $("#story-results").append(rowEl);
+        sectionEl.append(rowEl);
       }
+      $("#story-results").append(sectionEl);
     }
     // generates arrowBtn svg elements
     function arrowBtn(inputID) {
@@ -141,10 +143,6 @@ $(() => {
     // used in the sort method to sort by due date
     function compareDue(a, b) {
       return a.due > b.due ? 1 : -1;
-    }
-    // used in the sort method to sort by age
-    function compareAge(a, b) {
-      return a.age > b.age ? 1 : -1;
     }
   });
 });

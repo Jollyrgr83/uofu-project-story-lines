@@ -18,7 +18,12 @@ $(document).ready(() => {
       role: parseInt(roleInput.val())
     };
 
-    if (!userData.email || !userData.password) {
+    if (
+      !userData.email ||
+      !userData.password ||
+      !userData.name ||
+      !userData.phone
+    ) {
       return;
     }
     // If we have an email and password, run the signUpUser function
@@ -31,6 +36,8 @@ $(document).ready(() => {
     );
     emailInput.val("");
     passwordInput.val("");
+    nameInput.val("");
+    phoneInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the dashboard page
