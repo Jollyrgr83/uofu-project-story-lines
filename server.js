@@ -36,20 +36,20 @@ app.set("view engine", "handlebars");
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "story.lines.agile@gmail.com",
-    pass: "Abcd!234"
-  }
-});
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: "story.lines.agile@gmail.com",
+//     pass: "Abcd!234"
+//   }
+// });
 
-const mailOptions = {
-  from: "story.lines.agile@gmail.com",
-  to: "0018014624015@tmomail.net",
-  subject: "Sending Email using Node.js",
-  text: "That was easy!"
-};
+// const mailOptions = {
+//   from: "story.lines.agile@gmail.com",
+//   to: "0018014624015@tmomail.net",
+//   subject: "Sending Email using Node.js",
+//   text: "That was easy!"
+// };
 
 // transporter.sendMail(mailOptions, (error, info) => {
 //   if (error) {
