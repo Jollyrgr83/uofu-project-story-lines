@@ -58,3 +58,34 @@ module.exports = function(app) {
     }
   });
 };
+
+
+// include queries to & from database
+// get pulling data
+// put change existing
+// post add new
+// delete existing
+// module.specificmethod
+
+
+// get example 
+router.get("", (req, res) => {
+  model.("", data => res.json(data));
+});
+
+// post example 
+router.post("", (req, res) => {
+  model.(req.body, data => res.json(data));
+});
+
+// put example
+router.put("", (req, res) => {
+  model.(req.body, data => res.json(data));
+});
+
+// delete example
+router.delete("", (req, res) => {
+  model.(req.body, data => res.json(data));
+});
+
+module.exports = router;
