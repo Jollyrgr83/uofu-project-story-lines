@@ -16,6 +16,9 @@ $(() => {
       { id: 11, projectID: 41, projectName: "RPG", due: 6.0, age: 4.0 }
     ]
   };
+  $.get("/api/projects/id/" + project_id, (data) => {
+    console.log(data);
+  });
   activeProjects();
   activeStories();
   // event listener for arrow button clicks
