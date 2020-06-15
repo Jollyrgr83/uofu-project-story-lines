@@ -190,8 +190,28 @@ svg > * {
 .story-info {
   width: 48%;
 }
+.story-info-due {
+  width: 25%;
+}
+.story-info-created {
+  width: 70%;
+}
 .task {
   width: 71%;
+}
+.story-info-container {
+  width: 86%;
+  padding: 0;
+  margin: 0;
+}
+.story-info-due-container {
+  width: 25%;
+  padding: 0;
+  margin: 0;
+}
+.story-btn-container {
+  margin: 0;
+  padding-top: 34px;
 }
 .row-container {
   width: 95%;
@@ -234,8 +254,7 @@ select:enabled, select:focus, select:active {
   border-radius: 5px;
   border: none;
   font-size: 16px;
-  width: 20%;
-  margin-right: 10px;
+  width: 30%;
   padding: 5px 0 5px 0;
   box-shadow: 1px 1px 5px navy;
   background-color: whitesmoke;
@@ -270,6 +289,47 @@ select:enabled, select:focus, select:active {
   color: navy;
   text-align: center;
   height: 2.25em;
+}
+.story-task-input:enabled, .story-task-input:focus, .story-task-input:active {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 66%;
+  margin-right: 10px;
+  padding: 5px 0 5px 0;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+  height: 2.25em;
+}
+.story-info-input:enabled, .story-info-input:focus, .story-info-input:active {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 2.25em;
+  width: 24%;
+  margin-right: 10px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  color: navy;
+  text-align: center;
+}
+.info-select:enabled, .info-select:focus, .info-select:active {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 2.25em;
+  width: 48%;
+  margin-right: 10px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  /* background-color: whitesmoke; */
+  color: navy;
+  text-align: center;
 }
 /* used in dynamically rendered elements */
 .show {

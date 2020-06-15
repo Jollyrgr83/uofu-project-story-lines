@@ -3,29 +3,211 @@ $(() => {
     const db = {
       tasks: [
         { id: 1, description: "Button 1", status: 0 },
-        { id: 1, description: "Button 2", status: 1 },
-        { id: 1, description: "Button 3", status: 2 },
-        { id: 1, description: "Header", status: 3 },
-        { id: 1, description: "Footer", status: 0 }
+        { id: 2, description: "Button 2", status: 1 },
+        { id: 3, description: "Button 3", status: 2 },
+        { id: 4, description: "Header", status: 3 },
+        { id: 5, description: "Footer", status: 0 }
       ],
       story: [
         {
           id: 3,
           projectID: 17,
-          reporterName: "jhwatson",
-          assigneeName: "sholmes",
+          reporterID: 2,
+          assigneeID: 3,
           created: "04/01/20 08:30",
-          estimated: "3 Days"
+          estimated: 3.5,
+          details:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!"
         }
       ]
     };
+    renderInfo();
     renderTasks();
-    // click event listener for add-task button
-    $("#add-task-btn").on("click", () => {
-      renderAddTask();
+    renderDetails("static");
+    // click event listener for buttons
+    $(document).on("click", "svg", event => {
+      const clickID = $(event.target).attr("id");
+      const clickClass = $(event.target).attr("class");
+      if (clickID === "add-task-btn") {
+        renderAddTask();
+      }
+      if (clickClass.indexOf("pencil") !== -1) {
+        if (clickID.split("-")[1] === "details") {
+          renderDetails("edit");
+        } else {
+          renderEditTask(parseInt(clickID.split("-")[1]));
+        }
+      }
+      if (clickID === "updateTaskBtn") {
+        console.log("update");
+        // insert PUT request and update db object
+        taskMessage("update");
+      }
+      if (clickID === "saveNewTaskBtn") {
+        console.log("save");
+        // insert POST request and update db object
+        taskMessage("save");
+      }
+      if (clickID === "update-details") {
+        // insert PUT request and update db object
+        renderDetails("static");
+        detailsMessage();
+      }
+      if (clickID === "save-info-btn") {
+        console.log("save-info-btn");
+        // insert PUT request and update db object
+        infoMessage();
+      }
     });
+    // renders story information
+    function renderInfo() {
+      $("#story-title").text(
+        `Project ${db.story[0].projectID} - Story ${db.story[0].id}`
+      );
+      $(`#reporter option[value="${db.story[0].reporterID}"]`).attr(
+        "selected",
+        "selected"
+      );
+      $(`#assignee option[value="${db.story[0].assigneeID}"]`).attr(
+        "selected",
+        "selected"
+      );
+      $("#created").text(db.story[0].created);
+      $("#estimated").val(db.story[0].estimated);
+      if (db.story[0].estimated <= 1) {
+        $("#estimated").attr("class", "story-info-input mx-auto red");
+      } else {
+        if (db.story[0].estimated <= 3) {
+          $("#estimated").attr("class", "story-info-input mx-auto yellow");
+        } else {
+          $("#estimated").attr("class", "story-info-input mx-auto green");
+        }
+      }
+    }
+    // renders add task section
     function renderAddTask() {
-      console.log("add");
+      $("#dynamic-task-section").empty();
+      const sectionEl = htmlEl("section", [
+        "section-container mx-auto text-center",
+        "none"
+      ]);
+      // title row
+      const titleRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
+      const pTitleEl = htmlEl("p", ["section-title", "none"]);
+      pTitleEl.text("Add Task");
+      const saveBtnEl = createSVG("saveNewTaskBtn", "save");
+      titleRowEl.append(pTitleEl);
+      titleRowEl.append(saveBtnEl);
+      sectionEl.append(titleRowEl);
+      // input row
+      const inputRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
+      const inputEl = htmlEl("input", ["story-task-input", "add-task-input"]);
+      inputEl.attr("type", "text");
+      const statusMenuEl = htmlEl("select", ["status-select", "status-select"]);
+      const todoOptionEl = htmlEl("option", ["none", "none"]);
+      todoOptionEl.attr("value", "0");
+      todoOptionEl.text("Todo");
+      const blockedOptionEl = htmlEl("option", ["none", "none"]);
+      blockedOptionEl.attr("value", "1");
+      blockedOptionEl.text("Blocked");
+      const inProgressOptionEl = htmlEl("option", ["none", "none"]);
+      inProgressOptionEl.attr("value", "2");
+      inProgressOptionEl.text("In Progress");
+      const completedOptionEl = htmlEl("option", ["none", "none"]);
+      completedOptionEl.attr("value", "3");
+      completedOptionEl.text("Completed");
+      statusMenuEl.append(todoOptionEl);
+      statusMenuEl.append(blockedOptionEl);
+      statusMenuEl.append(inProgressOptionEl);
+      statusMenuEl.append(completedOptionEl);
+      inputRowEl.append(inputEl);
+      inputRowEl.append(statusMenuEl);
+      sectionEl.append(inputRowEl);
+      $("#dynamic-task-section").append(sectionEl);
+    }
+    // renders edit task section
+    function renderEditTask(taskID) {
+      console.log("taskID", taskID);
+      $("#dynamic-task-section").empty();
+      const sectionEl = htmlEl("section", [
+        "section-container mx-auto text-center",
+        "none"
+      ]);
+      // title row
+      const titleRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
+      const pTitleEl = htmlEl("p", ["section-title", "none"]);
+      pTitleEl.text(`Edit Task ${db.tasks[taskID].id}`);
+      const saveBtnEl = createSVG("updateTaskBtn", "save");
+      titleRowEl.append(pTitleEl);
+      titleRowEl.append(saveBtnEl);
+      sectionEl.append(titleRowEl);
+      // input row
+      const inputRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
+      const inputEl = htmlEl("input", ["story-task-input", "add-task-input"]);
+      inputEl.attr("type", "text");
+      inputEl.val(db.tasks[taskID].description);
+      const statusMenuEl = htmlEl("select", ["status-select", "status-select"]);
+      const todoOptionEl = htmlEl("option", ["none", "none"]);
+      todoOptionEl.attr("value", "0");
+      todoOptionEl.text("Todo");
+      const blockedOptionEl = htmlEl("option", ["none", "none"]);
+      blockedOptionEl.attr("value", "1");
+      blockedOptionEl.text("Blocked");
+      const inProgressOptionEl = htmlEl("option", ["none", "none"]);
+      inProgressOptionEl.attr("value", "2");
+      inProgressOptionEl.text("In Progress");
+      const completedOptionEl = htmlEl("option", ["none", "none"]);
+      completedOptionEl.attr("value", "3");
+      completedOptionEl.text("Completed");
+      if (db.tasks[taskID].status === 0) {
+        todoOptionEl.attr("selected", "selected");
+      } else if (db.tasks[taskID].status === 1) {
+        blockedOptionEl.attr("selected", "selected");
+      } else if (db.tasks[taskID].status === 2) {
+        inProgressOptionEl.attr("selected", "selected");
+      } else {
+        completedOptionEl.attr("selected", "selected");
+      }
+      statusMenuEl.append(todoOptionEl);
+      statusMenuEl.append(blockedOptionEl);
+      statusMenuEl.append(inProgressOptionEl);
+      statusMenuEl.append(completedOptionEl);
+      inputRowEl.append(inputEl);
+      inputRowEl.append(statusMenuEl);
+      sectionEl.append(inputRowEl);
+      $("#dynamic-task-section").append(sectionEl);
+    }
+    // renders edit story details section
+    function renderDetails(inputType) {
+      $("#details-section").empty();
+      if (inputType === "static") {
+        const divEl = htmlEl("div", ["row-container row mx-auto", "none"]);
+        const pTitleEl = htmlEl("p", ["section-title", "none"]);
+        pTitleEl.text("Details");
+        const editBtnEl = createSVG("edit-details", "edit");
+        divEl.append(pTitleEl);
+        divEl.append(editBtnEl);
+        $("#details-section").append(divEl);
+        const pTextEl = htmlEl("p", ["story-details mx-auto", "none"]);
+        pTextEl.text(db.story[0].details);
+        $("#details-section").append(pTextEl);
+      } else {
+        $("#details-message").empty();
+        const divEl = htmlEl("div", ["row-container row mx-auto", "none"]);
+        const pTitleEl = htmlEl("p", ["section-title", "none"]);
+        pTitleEl.text("Details");
+        const editBtnEl = createSVG("update-details", "save");
+        divEl.append(pTitleEl);
+        divEl.append(editBtnEl);
+        $("#details-section").append(divEl);
+        const textareaEl = htmlEl("textarea", [
+          "story-details mx-auto",
+          "details-input"
+        ]);
+        textareaEl.val(db.story[0].details);
+        textareaEl.attr("rows", 6);
+        $("#details-section").append(textareaEl);
+      }
     }
     // renders tasks section
     function renderTasks() {
@@ -37,12 +219,36 @@ $(() => {
         taskIDEl.text(db.tasks[i].id);
         const taskDescEl = htmlEl("p", ["section-item dash-story", "none"]);
         taskDescEl.text(`${db.tasks[i].status} - ${db.tasks[i].description}`);
-        const btnEl = createSVG(`edit-${db.tasks[i].id}`, "edit");
+        const btnEl = createSVG(`edit-${i}`, "edit");
         divEl.append(taskIDEl);
         divEl.append(taskDescEl);
         divEl.append(btnEl);
         $("#task-section").append(divEl);
       }
+    }
+    // renders message following task save or update
+    function taskMessage(messageType) {
+      $("#dynamic-task-section").empty();
+      sectionEl = htmlEl("section", ["section-container mx-auto text-center"]);
+      messageEl = htmlEl("p", ["section-title", "none"]);
+      messageType === "save"
+        ? messageEl.text("Task added!")
+        : messageEl.text("Task updated!");
+      sectionEl.append(messageEl);
+      $("#dynamic-task-section").append(sectionEl);
+    }
+    // renders message following details update
+    function detailsMessage() {
+      $("#details-message").empty();
+      const messageEl = htmlEl("p", ["section-title", "none"]);
+      messageEl.text("Story details updated!");
+      $("#details-message").append(messageEl);
+    }
+    function infoMessage() {
+      $("#info-message").empty();
+      const messageEl = htmlEl("p", ["section-title", "none"]);
+      messageEl.text("Story information updated!");
+      $("#info-message").append(messageEl);
     }
     // generates arrowBtn svg elements
     function createSVG(inputID, btnType) {
