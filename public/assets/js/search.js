@@ -10,6 +10,7 @@ $(() => {
     const clickID = $(event.target).attr("id");
     const clickClass = $(event.target).attr("class");
     console.log("clickID", clickID);
+    console.log(clickClass);
     if (clickID === "search-btn") {
       getSearchResults();
     }
