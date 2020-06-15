@@ -1,6 +1,6 @@
 // Requiring path to so we can use relative routes to our HTML files
 // const path = require("path");
-
+const db = require("../models");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
@@ -37,11 +37,27 @@ module.exports = function(app) {
     res.render("search", { title: "search" });
   });
 
-  app.get("/story", isAuthenticated, (req, res) => {
+  app.get("/story/id/:id", isAuthenticated, (req, res) => {
+    if (req.params.id || !isNaN(parseInt(req.params.id))) {
+      const storyID = parseInt(req.params.id);
+      db.Story.findOne({
+        where: { id: storyID }
+      }).then(data => {
+        console.log("data", data);
+      });
+    }
     res.render("story", { title: "story" });
   });
 
-  app.get("/project", isAuthenticated, (req, res) => {
+  app.get("/project/id/:id", isAuthenticated, (req, res) => {
+    if (req.params.id || !isNaN(parseInt(req.params.id))) {
+      const projectID = parseInt(req.params.id);
+      db.Project.findOne({
+        where: { id: projectID }
+      }).then(data => {
+        console.log("data", data);
+      });
+    }
     res.render("project", { title: "project" });
   });
 };
