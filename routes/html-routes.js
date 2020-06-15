@@ -60,4 +60,14 @@ module.exports = function(app) {
     }
     res.render("project", { title: "project" });
   });
+
+  // generic project page for testing (remove this after testing)
+  app.get("/project", isAuthenticated, (req, res) => {
+    res.render("project", { title: "project" });
+  });
+
+  // generic story page for testing (remove this after testing)
+  app.get("/story", isAuthenticated, (req, res) => {
+    res.render("story", { title: "story" });
+  });
 };
