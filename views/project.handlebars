@@ -13,18 +13,12 @@
       <h1 id="project-title" class="title mx-auto"></h1>
     </section>
     <section class="section-container mx-auto text-center">
+      <p class="section-title">Information</p>
       <div class="row-container row mx-auto">
-        <p class="section-title">Information</p>
-        <svg id="save-info-btn" class="story-btn bi bi-arrow-clockwise" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
-          <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </div>
-      <div class="row mx-auto">
         <p class="subtitle mx-auto">Reporter:</p> 
         <p class="subtitle mx-auto">Assignee:</p>
       </div>
-      <div class="row mx-auto">
+      <div class="row-container row mx-auto">
         <select id="reporter" class="info-select mx-auto">
           <option value="0">sholmes</option>
           <option value="1">absmith</option>
@@ -38,13 +32,28 @@
           <option value="3">klmanning</option>
         </select>  
       </div>   
-      <div class="row mx-auto">
+      <div class="row-container row mx-auto">
         <p class="subtitle mx-auto">Created:</p> 
         <p class="subtitle mx-auto">Due:</p>   
       </div>
-      <div class="row mx-auto">
+      <div class="row-container row mx-auto">
         <p id="created" class="story-info-item mx-auto"></p>  
         <input id="estimated" class="story-info-input" />  
+      </div>
+      <div class="row-container row mx-auto">
+        <div>
+          <p class="subtitle">Status</p>
+          <select id="status" class="info-select">
+            <option value="0">Todo</option>
+            <option value="1">Blocked</option>
+            <option value="2">In Progress</option>
+            <option value="3">Completed</option>
+          </select>  
+        </div>
+        <svg id="save-info-btn" class="story-btn bi bi-arrow-clockwise" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+          <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+        </svg>
       </div>
       <div id="info-message"></div>
     </section>

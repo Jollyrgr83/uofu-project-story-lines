@@ -178,8 +178,8 @@ svg > * {
   border-radius: 5px;
   font-size: 16px;
   height: 2.25em;
-  width: 153px;
-  margin: 0 10px 0 10px;
+  width: 150px;
+  margin: 5px;
   padding: 5px;
   box-shadow: 1px 1px 5px navy;
   background-color: whitesmoke;
@@ -216,11 +216,11 @@ svg > * {
   margin: 0;
 }
 .subtitle {
-  margin: 10px;
+  margin: 5px;
   padding: 5px;
   color: navy;
   font-size: 16px;
-  width: 153px;
+  width: 150px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   color: lightgray;
@@ -314,8 +314,8 @@ select:enabled, select:focus, select:active {
   border-radius: 5px;
   font-size: 16px;
   height: 2.25em;
-  width: 153px;
-  margin: 0 10px 0 10px;
+  width: 150px;
+  margin: 5px !important;
   padding: 5px;
   box-shadow: 1px 1px 5px navy;
   /* background-color: whitesmoke; */
@@ -328,13 +328,17 @@ select:enabled, select:focus, select:active {
   border-radius: 5px;
   font-size: 16px;
   height: 2.25em;
-  width: 153px;
-  margin: 0 10px 0 10px;
+  width: 150px;
+  margin: 5px;
   padding: 5px;
   box-shadow: 1px 1px 5px navy;
   background-color: whitesmoke;
   color: navy;
   text-align: center;
+}
+#save-info-btn {
+  margin-top: 50px;
+  margin-left: 115px;
 }
 /* used in dynamically rendered elements */
 .show {
