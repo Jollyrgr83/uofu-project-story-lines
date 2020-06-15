@@ -230,7 +230,7 @@ $(() => {
     function taskMessage(messageType) {
       $("#dynamic-task-section").empty();
       sectionEl = htmlEl("section", ["section-container mx-auto text-center"]);
-      messageEl = htmlEl("p", ["section-title", "none"]);
+      messageEl = htmlEl("p", ["section-message", "none"]);
       messageType === "save"
         ? messageEl.text("Task added!")
         : messageEl.text("Task updated!");
@@ -240,13 +240,13 @@ $(() => {
     // renders message following details update
     function detailsMessage() {
       $("#details-message").empty();
-      const messageEl = htmlEl("p", ["section-title", "none"]);
+      const messageEl = htmlEl("p", ["section-message", "none"]);
       messageEl.text("Story details updated!");
       $("#details-message").append(messageEl);
     }
     function infoMessage() {
       $("#info-message").empty();
-      const messageEl = htmlEl("p", ["section-title", "none"]);
+      const messageEl = htmlEl("p", ["section-message", "none"]);
       messageEl.text("Story information updated!");
       $("#info-message").append(messageEl);
     }

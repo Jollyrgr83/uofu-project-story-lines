@@ -166,6 +166,26 @@ svg > * {
   box-shadow: 1px 1px 5px navy;
   height: 2.25em;
 }
+.section-message {
+  font-size: 20px;
+  text-align: start;
+  margin: 10px 10px 0 10px;
+  color:navy;
+  height: 2.25em;
+  width: 88%;
+}
+.story-info-item {
+  border-radius: 5px;
+  font-size: 16px;
+  height: 2.25em;
+  width: 153px;
+  margin: 0 10px 0 10px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+}
 .story-details {
   margin-right: 10px;
   padding: 5px;
@@ -178,51 +198,35 @@ svg > * {
   width: 95%;
 }
 .dash-project {
-  width: 85%;
+  width: 272px;
 }
 .dash-day {
-  width: 11.5%;
+  width: 37px;
 }
 .dash-story {
-  width: 70.5%;
+  width: 225px;
   overflow: auto;
-}
-.story-info {
-  width: 48%;
-}
-.story-info-due {
-  width: 25%;
-}
-.story-info-created {
-  width: 70%;
 }
 .task {
   width: 71%;
 }
-.story-info-container {
-  width: 86%;
-  padding: 0;
-  margin: 0;
-}
-.story-info-due-container {
-  width: 25%;
-  padding: 0;
-  margin: 0;
-}
-.story-btn-container {
-  margin: 0;
-  padding-top: 34px;
-}
 .row-container {
-  width: 95%;
+  width: 320px;
   padding: 0;
   margin: 0;
 }
 .subtitle {
-  margin: 0;
+  margin: 10px;
   padding: 5px;
   color: navy;
   font-size: 16px;
+  width: 153px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: lightgray;
+  background-color: navy;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px navy;
 }
 /* color-coding for time-related elements */
 .red {
@@ -310,10 +314,11 @@ select:enabled, select:focus, select:active {
   border-radius: 5px;
   font-size: 16px;
   height: 2.25em;
-  width: 24%;
-  margin-right: 10px;
+  width: 153px;
+  margin: 0 10px 0 10px;
   padding: 5px;
   box-shadow: 1px 1px 5px navy;
+  /* background-color: whitesmoke; */
   color: navy;
   text-align: center;
 }
@@ -323,11 +328,11 @@ select:enabled, select:focus, select:active {
   border-radius: 5px;
   font-size: 16px;
   height: 2.25em;
-  width: 48%;
-  margin-right: 10px;
+  width: 153px;
+  margin: 0 10px 0 10px;
   padding: 5px;
   box-shadow: 1px 1px 5px navy;
-  /* background-color: whitesmoke; */
+  background-color: whitesmoke;
   color: navy;
   text-align: center;
 }
