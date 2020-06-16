@@ -14,15 +14,19 @@
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Projects</p>
-      <div id="dynamic-project"></div>
+      {{#each array}}
+        {{#each project}}
+          {{> dash/project-block}}
+        {{/each}}
+      {{/each}}
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Stories</p>
-      <select id="sort-select" class="mx-auto">
-        <option value="0">Sort by Days Left</option>
-        <option value="1">Sort by Age</option>
-      </select>
-      <div id="dynamic-story"></div>
+      {{#each array}}
+        {{#each story}}
+          {{> dash/story-block}}
+        {{/each}}
+      {{/each}}
     </section>
   </main>
 </body>

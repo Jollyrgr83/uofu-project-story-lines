@@ -28,10 +28,19 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
+// handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
+// custom handlebars helpers
+// exphbs.Handlebars.registerHelper("daysLeft", value => {
+//   if (value <= 1) {
+//     return "red";
+//   }
+//   if (value <= 3) {
+//     return "yellow";
+//   }
+//   return "green";
+// });
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);

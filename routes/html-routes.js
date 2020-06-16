@@ -26,7 +26,43 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/dash", isAuthenticated, (req, res) => {
-    res.render("dash", { title: "dashboard" });
+    userID = req.user.id;
+    // let hbsObj = {
+    //   arrays: [
+    //     {
+    //       title: "Page Title",
+    //       projects: [ { id: ##, title: ## }],
+    //       stories: [ { id: ##, title: ##, projectID: ##, projectTitle: ##, daysRem: ## } ]
+    //     }
+    //   ]
+    // };
+    const hbsObj = { array: [{ title: "Dashboard", project: [], story: [] }] };
+    db.Project.findAll({
+      attributes: ["id", "title"],
+      where: {
+        owner: userID
+      }
+    }).then(data => {
+      hbsObj.array[0].project = data.map(x => {
+        return { id: x.id, title: x.title };
+      });
+      db.Story.findAll({
+        attributes: ["id", "title", "project", "estimate"],
+        where: {
+          assignee: userID
+        }
+      }).then(data => {
+        hbsObj.array[0].story = data.map(x => {
+          return {
+            id: x.id,
+            title: x.title,
+            projectID: x.project,
+            daysRem: x.estimate
+          };
+        });
+        res.render("dash", hbsObj);
+      });
+    });
   });
 
   app.get("/add", isAuthenticated, (req, res) => {
@@ -49,21 +85,13 @@ module.exports = function(app) {
     res.render("story", { title: "story" });
   });
 
-  app.get("/project/id/:id", isAuthenticated, (req, res) => {
-    if (req.params.id || !isNaN(parseInt(req.params.id))) {
-      const projectID = parseInt(req.params.id);
-      db.Project.findOne({
-        where: { id: projectID }
-      }).then(data => {
-        console.log("data", data.dataValues);
-      });
-    }
-    res.render("project", { title: "project" });
-  });
-
   // generic project page for testing (remove this after testing)
-  app.get("/project", isAuthenticated, (req, res) => {
-    res.render("project", { title: "project" });
+  app.get("/project/:id/", isAuthenticated, (req, res) => {
+    if (req.params.id && !isNaN(parseInt(req.params.id))) {
+      const projectID = parseInt(req.params.id);
+      console.log(`Project - ${projectID}`);
+      res.render("project", { title: `Project - ${projectID}` });
+    }
   });
 
   // generic story page for testing (remove this after testing)
