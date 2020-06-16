@@ -166,6 +166,26 @@ svg > * {
   box-shadow: 1px 1px 5px navy;
   height: 2.25em;
 }
+.section-message {
+  font-size: 20px;
+  text-align: start;
+  margin: 10px 10px 0 10px;
+  color:navy;
+  height: 2.25em;
+  width: 88%;
+}
+.story-info-item {
+  border-radius: 5px;
+  font-size: 16px;
+  height: 2.25em;
+  width: 150px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+}
 .story-details {
   margin-right: 10px;
   padding: 5px;
@@ -178,31 +198,35 @@ svg > * {
   width: 95%;
 }
 .dash-project {
-  width: 85%;
+  width: 272px;
 }
 .dash-day {
-  width: 11.5%;
+  width: 37px;
 }
 .dash-story {
-  width: 70.5%;
+  width: 225px;
   overflow: auto;
-}
-.story-info {
-  width: 48%;
 }
 .task {
   width: 71%;
 }
 .row-container {
-  width: 95%;
+  width: 320px;
   padding: 0;
   margin: 0;
 }
 .subtitle {
-  margin: 0;
+  margin: 5px;
   padding: 5px;
   color: navy;
   font-size: 16px;
+  width: 150px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: lightgray;
+  background-color: navy;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px navy;
 }
 /* color-coding for time-related elements */
 .red {
@@ -234,8 +258,7 @@ select:enabled, select:focus, select:active {
   border-radius: 5px;
   border: none;
   font-size: 16px;
-  width: 20%;
-  margin-right: 10px;
+  width: 30%;
   padding: 5px 0 5px 0;
   box-shadow: 1px 1px 5px navy;
   background-color: whitesmoke;
@@ -270,6 +293,52 @@ select:enabled, select:focus, select:active {
   color: navy;
   text-align: center;
   height: 2.25em;
+}
+.story-task-input:enabled, .story-task-input:focus, .story-task-input:active {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 66%;
+  margin-right: 10px;
+  padding: 5px 0 5px 0;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+  height: 2.25em;
+}
+.story-info-input:enabled, .story-info-input:focus, .story-info-input:active {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 2.25em;
+  width: 150px;
+  margin: 5px !important;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  /* background-color: whitesmoke; */
+  color: navy;
+  text-align: center;
+}
+.info-select:enabled, .info-select:focus, .info-select:active {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 2.25em;
+  width: 150px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+}
+#save-info-btn {
+  margin-top: 50px;
+  margin-left: 115px;
 }
 /* used in dynamically rendered elements */
 .show {

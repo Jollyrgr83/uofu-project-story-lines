@@ -19,7 +19,7 @@ $(() => {
   activeProjects();
   activeStories();
   // event listener for arrow button clicks
-  $(".arrow-btn").on("click", event => {
+  $(document).on("click", ".arrow-btn", event => {
     const arrowID = $(event.target).attr("id");
     const numID = parseInt(arrowID.split("-")[1]);
     const textID = arrowID.split("-")[0];
