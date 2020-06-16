@@ -2,46 +2,8 @@
 const db = require("../models");
 // authentication middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-// date function for calculating due date
-Date.prototype.addDays = function(days) {
-  const date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-};
-// function to calculate days remaining
-const daysLeft = function(dateOld, dateNew) {
-  return parseFloat(((dateNew - dateOld) / 86400000).toFixed(1));
-};
-// function to return formatted date string
-const displayDate = function(dateObj) {
-  let month = (dateObj.getMonth() + 1).toString();
-  if (month.length === 1) {
-    month = `0${month}`;
-  }
-  let days = dateObj.getDate().toString();
-  if (days.length === 1) {
-    days = `0${days}`;
-  }
-  let hours = dateObj.getHours();
-  if (hours.toString().length === 1) {
-    hours = `0${hours}`;
-  }
-  let minutes = dateObj.getMinutes();
-  if (minutes.toString().length === 1) {
-    minutes = `0${minutes}`;
-  }
-  return `${month}/${days} ${hours}:${minutes}`;
-};
-// function that returns color class for days left
-const colorClass = function(num) {
-  if (num <= 1) {
-    return "red";
-  }
-  if (num <= 3) {
-    return "yellow";
-  }
-  return "green";
-};
+// import library functions
+const display = require("../lib/display");
 // html routes
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -262,11 +224,11 @@ module.exports = function(app) {
           assignee: data.assignee,
           reporter: data.reporter,
           estimate: data.estimate,
-          createdAt: displayDate(new Date(data.createdAt)),
-          due: displayDate(timeStart.addDays(data.estimate)),
-          days: daysLeft(timeNow, timeStart.addDays(data.estimate)),
-          colorClass: colorClass(
-            daysLeft(timeNow, timeStart.addDays(data.estimate))
+          createdAt: display.displayDate(new Date(data.createdAt)),
+          due: display.displayDate(display.addDays(timeStart, data.estimate)),
+          days: display.daysLeft(timeNow, display.addDays(timeStart, data.estimate)),
+          colorClass: display.colorClass(
+            display.daysLeft(timeNow, display.addDays(timeStart, data.estimate))
           )
         });
         console.log(hbsObj.array[0].story[0]);
