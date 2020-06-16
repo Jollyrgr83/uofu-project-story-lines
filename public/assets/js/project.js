@@ -1,29 +1,7 @@
 $(() => {
   $(() => {
-    const db = {
-      stories: [
-        { id: 1, name: "Login Page" },
-        { id: 2, name: "Dashboard" },
-        { id: 3, name: "Story Page" },
-        { id: 4, name: "Project Page" },
-        { id: 5, name: "Search Page" }
-      ],
-      project: [
-        {
-          id: 3,
-          name: "Story Lines Project",
-          reporterID: 2,
-          assigneeID: 3,
-          created: "04/01/20 08:30",
-          estimated: 3.5,
-          details:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!"
-        }
-      ]
-    };
-    renderInfo();
-    renderStories();
-    renderDetails("static");
+    const db = {};
+    getInfo();
     // click event listener for buttons
     $(document).on("click", "svg", event => {
       const clickID = $(event.target).attr("id");
@@ -38,13 +16,16 @@ $(() => {
           renderEditStory(parseInt(clickID.split("-")[1]));
         }
       }
-      if (clickID === "updateStoryBtn") {
-        console.log("update");
-        // insert PUT request and update db object
-        projectMessage("update");
-      }
       if (clickID === "saveNewStoryBtn") {
-        console.log("save");
+        // const storyName = $("#add-story-input").val().trim();
+        // const storyStatus = parseInt($("#status-select").val());
+        // if (storyName === "" || storyName === null) {
+        //   return;
+        // }
+        // $.ajax("/api/add/story", {
+        //   type: "POST",
+        //   data: { storyName: storyName, storyStatus: storyStatus}
+        // }).then(data => {});
         // insert POST request and update db object
         projectMessage("save");
       }
@@ -53,12 +34,22 @@ $(() => {
         renderDetails("static");
         detailsMessage();
       }
-      if (clickID === "save-info-btn") {
-        console.log("save-info-btn");
-        // insert PUT request and update db object
-        infoMessage();
-      }
     });
+    function getInfo() {
+      const projID = parseInt(
+        $("#project-title")
+          .text()
+          .split("-")[1]
+      );
+      $.get("/api/project/id/" + projID, data => {
+        db.stories = data.stories;
+        db.project = data.project;
+        console.log("db", db);
+        renderInfo();
+        renderStories();
+        renderDetails("static");
+      });
+    }
     // renders story information
     function renderInfo() {
       $("#project-title").text(
@@ -68,23 +59,9 @@ $(() => {
         "selected",
         "selected"
       );
-      $(`#assignee option[value="${db.project[0].assigneeID}"]`).attr(
-        "selected",
-        "selected"
-      );
       $("#created").text(db.project[0].created);
-      $("#estimated").val(db.project[0].estimated);
-      if (db.project[0].estimated <= 1) {
-        $("#estimated").attr("class", "story-info-input mx-auto red");
-      } else {
-        if (db.project[0].estimated <= 3) {
-          $("#estimated").attr("class", "story-info-input mx-auto yellow");
-        } else {
-          $("#estimated").attr("class", "story-info-input mx-auto green");
-        }
-      }
     }
-    // renders add task section
+    // renders add story section
     function renderAddStory() {
       $("#dynamic-story-section").empty();
       const sectionEl = htmlEl("section", [
@@ -243,12 +220,12 @@ $(() => {
       messageEl.text("Project details updated!");
       $("#details-message").append(messageEl);
     }
-    function infoMessage() {
-      $("#info-message").empty();
-      const messageEl = htmlEl("p", ["section-message", "none"]);
-      messageEl.text("Project information updated!");
-      $("#info-message").append(messageEl);
-    }
+    // function infoMessage() {
+    //   $("#info-message").empty();
+    //   const messageEl = htmlEl("p", ["section-message", "none"]);
+    //   messageEl.text("Project information updated!");
+    //   $("#info-message").append(messageEl);
+    // }
     // generates arrowBtn svg elements
     function createSVG(inputID, btnType) {
       const ref = {
