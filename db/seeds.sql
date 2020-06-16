@@ -1,6 +1,6 @@
 USE passport_demo;
 
-INSERT INTO projects (title, description, owner, createdAt, updatedAt) VALUES
+INSERT INTO Projects (title, description, owner, createdAt, updatedAt) VALUES
 ('Project Alpha', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 1, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
 ('Project Bravo', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 1, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
 ('Project Charlie', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 2, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
@@ -13,7 +13,7 @@ INSERT INTO projects (title, description, owner, createdAt, updatedAt) VALUES
 -- (7, 'In_Progress'),
 -- (8, 'Completed');
 
-INSERT INTO stories (id, title, description, status, project, assignee, reporter, estimate, createdAt, updatedAt) VALUES
+INSERT INTO Stories (id, title, description, status, projectID, assignee, reporter, estimate, createdAt, updatedAt) VALUES
 (1, 'Login Page', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 0, 1, 1, 1, 1.5, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
 (2, 'Search Page', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 1, 1, 1, 1, 2.5, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
 (3, 'Logout Page', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 2, 1, 1, 1, 3.5, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
@@ -30,7 +30,7 @@ INSERT INTO stories (id, title, description, status, project, assignee, reporter
 (14, 'Delete Page', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 1, 5, 1, 1, 5.5, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
 (15, 'Add Page', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!', 2, 5, 1, 1, 6.5, '2020-06-08 13:04:27', '2020-06-08 13:04:27');
 
-INSERT INTO tasks (title, owner, story, time, status, createdAt, updatedAt) VALUES
+INSERT INTO Tasks (title, owner, story, time, status, createdAt, updatedAt) VALUES
 ('Button 1', 1, 1, 1.5, 0, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 1, 2.5, 1, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 2, 3.5, 2, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 2, 4.5, 3, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 3, 5.5, 0, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
 ('Button 1', 1, 4, 1.5, 0, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 4, 2.5, 1, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 5, 3.5, 2, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 5, 4.5, 3, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 6, 5.5, 0, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),
 ('Button 1', 1, 7, 1.5, 0, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 7, 2.5, 1, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 8, 3.5, 2, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 8, 4.5, 3, '2020-06-08 13:04:27', '2020-06-08 13:04:27'), ('Button 1', 1, 9, 5.5, 0, '2020-06-08 13:04:27', '2020-06-08 13:04:27'),

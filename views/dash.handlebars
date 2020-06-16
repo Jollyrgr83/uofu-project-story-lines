@@ -10,7 +10,9 @@
   </header>
   <main>
     <section class="title-container mx-auto">
-      <h1 class="title mx-auto">Welcome, Jane!</h1>
+      <h1 class="title mx-auto">Welcome, Jane! 
+      {{ project.title }}</h1>
+
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Projects</p>
@@ -18,11 +20,16 @@
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Stories</p>
-      <select id="sort-select" class="mx-auto">
-        <option value="0">Sort by Days Left</option>
-        <option value="1">Sort by Age</option>
-      </select>
+      
+      {{#each project.Stories}}
+            <div>{{ this.dataValues.title }} <br/>
+            {{ this.dataValues.description }} </div>
+      {{/each}}
+    
       <div id="dynamic-story"></div>
     </section>
+
+
+    
   </main>
 </body>

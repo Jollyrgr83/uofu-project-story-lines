@@ -12,5 +12,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER
     }
   });
+
+  Project.associate = function(models) {
+    Project.hasMany(models.Story, {
+      onDelete: "cascade"
+    });
+  };
   return Project;
 };

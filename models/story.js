@@ -13,10 +13,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    project: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     assignee: {
       type: DataTypes.INTEGER
     },
@@ -28,5 +24,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
+
+  Story.associate = function(models) {
+    Story.belongsTo(models.Project, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Story;
 };
