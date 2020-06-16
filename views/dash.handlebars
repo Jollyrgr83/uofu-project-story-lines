@@ -10,20 +10,26 @@
   </header>
   <main>
     <section class="title-container mx-auto">
-      <h1 class="title mx-auto">Welcome, Jane! 
-      {{ project.title }}</h1>
+      <h1 class="title mx-auto">Welcome, Jane! </h1>
 
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Projects</p>
+      {{#each project }}
+        {{#each this }}
+            <div>{{ title }} </div>
+        {{/each}}
+      {{/each}}
       <div id="dynamic-project"></div>
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Active Stories</p>
       
-      {{#each project.Stories}}
+      {{#each project }}
+        {{#each this.Stories }}
             <div>{{ this.dataValues.title }} <br/>
             {{ this.dataValues.description }} </div>
+        {{/each}}
       {{/each}}
     
       <div id="dynamic-story"></div>

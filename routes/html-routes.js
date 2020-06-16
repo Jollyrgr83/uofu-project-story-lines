@@ -27,12 +27,14 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/dash", isAuthenticated, (req, res) => {
     //const projectID = parseInt(req.params.id);
-    db.Project.findOne({
-      where: { id: 1 },
+    db.Project.findAll({
+      where: { owner: req.user.id },
       include: db.Story
     }).then(data => {
-      console.log("data", { project: data.dataValues.Stories.length });
-      res.render("dash", { project: data.dataValues });
+      for (i in data) {
+        console.log("data", { project: data[i].dataValues });
+      }
+      res.render("dash", { project: data });
     });
   });
 
