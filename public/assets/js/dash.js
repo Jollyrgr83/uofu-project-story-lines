@@ -7,7 +7,7 @@ $(() => {
     console.log("textID", textID);
     console.log("numID", numID);
     if (textID === "arrowProject") {
-      window.location.href = "/project/id/" + numID;
+      window.location.href = "/project/" + numID;
     } else if (textID === "arrowStory") {
       window.location.href = "/story/";
     }

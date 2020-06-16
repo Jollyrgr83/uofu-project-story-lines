@@ -20,10 +20,9 @@
       </div>
       <div class="row-container row mx-auto">
         <select id="reporter" class="info-select mx-auto">
-          <option value="0">sholmes</option>
-          <option value="1">absmith</option>
-          <option value="2">cdevans</option>
-          <option value="3">efskinner</option>
+          {{#each user}}
+            {{> project/option}}
+          {{/each}}
         </select>  
         <p id="created" class="story-info-item mx-auto"></p>  
       </div>   
@@ -35,11 +34,16 @@
     </section>
     <!-- project details -->
     <section class="section-container mx-auto text-center">
-      <div id="details-section"></div>
+      <div class="row-container row mx-auto">
+        <p class="section-title">Details</p>
+        <svg id="edit-details-btn" class="story-btn bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+          <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+        </svg>
+      </div>
+      <p class="story-details mx-auto">{{description}}</p>
       <div id="details-message"></div>
     </section>
-    <!-- add/edit story -->
-    <div id="dynamic-story-section"></div>
     <section class="section-container mx-auto text-center">
       <div class="row-container row mx-auto">
         <p class="section-title">Stories</p>
@@ -48,8 +52,9 @@
           <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
         </svg>
       </div>
-      <!-- stories associated with project -->
-      <div id="story-section"></div>
+      {{#each story}}
+        {{> project/story}}
+      {{/each}}
   </section>
   </main>
 </body>

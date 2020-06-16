@@ -1,33 +1,19 @@
 $(() => {
   $(() => {
-    const db = {};
-    getInfo();
     // click event listener for buttons
     $(document).on("click", "svg", event => {
       const clickID = $(event.target).attr("id");
       const clickClass = $(event.target).attr("class");
       if (clickID === "add-story-btn") {
-        renderAddStory();
+        // $.get("/project/project_id/add");
       }
       if (clickClass.indexOf("pencil") !== -1) {
         if (clickID.split("-")[1] === "details") {
           renderDetails("edit");
         } else {
-          renderEditStory(parseInt(clickID.split("-")[1]));
+          // $.get("/project/project_id/edit/story_id");
+          // const story_id = parseInt(clickID.split("-")[1]);
         }
-      }
-      if (clickID === "saveNewStoryBtn") {
-        // const storyName = $("#add-story-input").val().trim();
-        // const storyStatus = parseInt($("#status-select").val());
-        // if (storyName === "" || storyName === null) {
-        //   return;
-        // }
-        // $.ajax("/api/add/story", {
-        //   type: "POST",
-        //   data: { storyName: storyName, storyStatus: storyStatus}
-        // }).then(data => {});
-        // insert POST request and update db object
-        projectMessage("save");
       }
       if (clickID === "update-details") {
         // insert PUT request and update db object
@@ -35,125 +21,6 @@ $(() => {
         detailsMessage();
       }
     });
-    function getInfo() {
-      const projID = parseInt(
-        $("#project-title")
-          .text()
-          .split("-")[1]
-      );
-      $.get("/api/project/id/" + projID, data => {
-        db.stories = data.stories;
-        db.project = data.project;
-        console.log("db", db);
-        renderInfo();
-        renderStories();
-        renderDetails("static");
-      });
-    }
-    // renders story information
-    function renderInfo() {
-      $("#project-title").text(
-        `Project ${db.project[0].id} - ${db.project[0].name}`
-      );
-      $(`#reporter option[value="${db.project[0].reporterID}"]`).attr(
-        "selected",
-        "selected"
-      );
-      $("#created").text(db.project[0].created);
-    }
-    // renders add story section
-    function renderAddStory() {
-      $("#dynamic-story-section").empty();
-      const sectionEl = htmlEl("section", [
-        "section-container mx-auto text-center",
-        "none"
-      ]);
-      // title row
-      const titleRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-      const pTitleEl = htmlEl("p", ["section-title", "none"]);
-      pTitleEl.text("Add Story");
-      const saveBtnEl = createSVG("saveNewStoryBtn", "save");
-      titleRowEl.append(pTitleEl);
-      titleRowEl.append(saveBtnEl);
-      sectionEl.append(titleRowEl);
-      // input row
-      const inputRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-      const inputEl = htmlEl("input", ["story-task-input", "add-story-input"]);
-      inputEl.attr("type", "text");
-      const statusMenuEl = htmlEl("select", ["status-select", "status-select"]);
-      const todoOptionEl = htmlEl("option", ["none", "none"]);
-      todoOptionEl.attr("value", "0");
-      todoOptionEl.text("Todo");
-      const blockedOptionEl = htmlEl("option", ["none", "none"]);
-      blockedOptionEl.attr("value", "1");
-      blockedOptionEl.text("Blocked");
-      const inProgressOptionEl = htmlEl("option", ["none", "none"]);
-      inProgressOptionEl.attr("value", "2");
-      inProgressOptionEl.text("In Progress");
-      const completedOptionEl = htmlEl("option", ["none", "none"]);
-      completedOptionEl.attr("value", "3");
-      completedOptionEl.text("Completed");
-      statusMenuEl.append(todoOptionEl);
-      statusMenuEl.append(blockedOptionEl);
-      statusMenuEl.append(inProgressOptionEl);
-      statusMenuEl.append(completedOptionEl);
-      inputRowEl.append(inputEl);
-      inputRowEl.append(statusMenuEl);
-      sectionEl.append(inputRowEl);
-      $("#dynamic-story-section").append(sectionEl);
-    }
-    // renders edit story section
-    function renderEditStory(storyID) {
-      console.log("storyID", storyID);
-      $("#dynamic-story-section").empty();
-      const sectionEl = htmlEl("section", [
-        "section-container mx-auto text-center",
-        "none"
-      ]);
-      // title row
-      const titleRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-      const pTitleEl = htmlEl("p", ["section-title", "none"]);
-      pTitleEl.text(`Edit Story ${db.stories[storyID].id}`);
-      const saveBtnEl = createSVG("updateStoryBtn", "save");
-      titleRowEl.append(pTitleEl);
-      titleRowEl.append(saveBtnEl);
-      sectionEl.append(titleRowEl);
-      // input row
-      const inputRowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-      const inputEl = htmlEl("input", ["story-task-input", "add-story-input"]);
-      inputEl.attr("type", "text");
-      inputEl.val(db.stories[storyID].name);
-      const statusMenuEl = htmlEl("select", ["status-select", "status-select"]);
-      const todoOptionEl = htmlEl("option", ["none", "none"]);
-      todoOptionEl.attr("value", "0");
-      todoOptionEl.text("Todo");
-      const blockedOptionEl = htmlEl("option", ["none", "none"]);
-      blockedOptionEl.attr("value", "1");
-      blockedOptionEl.text("Blocked");
-      const inProgressOptionEl = htmlEl("option", ["none", "none"]);
-      inProgressOptionEl.attr("value", "2");
-      inProgressOptionEl.text("In Progress");
-      const completedOptionEl = htmlEl("option", ["none", "none"]);
-      completedOptionEl.attr("value", "3");
-      completedOptionEl.text("Completed");
-      if (db.stories[storyID].status === 0) {
-        todoOptionEl.attr("selected", "selected");
-      } else if (db.stories[storyID].status === 1) {
-        blockedOptionEl.attr("selected", "selected");
-      } else if (db.stories[storyID].status === 2) {
-        inProgressOptionEl.attr("selected", "selected");
-      } else {
-        completedOptionEl.attr("selected", "selected");
-      }
-      statusMenuEl.append(todoOptionEl);
-      statusMenuEl.append(blockedOptionEl);
-      statusMenuEl.append(inProgressOptionEl);
-      statusMenuEl.append(completedOptionEl);
-      inputRowEl.append(inputEl);
-      inputRowEl.append(statusMenuEl);
-      sectionEl.append(inputRowEl);
-      $("#dynamic-story-section").append(sectionEl);
-    }
     // renders edit story details section
     function renderDetails(inputType) {
       $("#details-section").empty();
@@ -186,33 +53,6 @@ $(() => {
         $("#details-section").append(textareaEl);
       }
     }
-    // renders stories section
-    function renderStories() {
-      $("#story-section").empty();
-      for (let i = 0; i < db.stories.length; i++) {
-        const divEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-        const storyIDEl = htmlEl("p", ["section-item dash-day", "none"]);
-        storyIDEl.text(db.stories[i].id);
-        const taskDescEl = htmlEl("p", ["section-item dash-story", "none"]);
-        taskDescEl.text(`${db.stories[i].name}`);
-        const btnEl = createSVG(`arrowStory-${i}`, "arrowStory");
-        divEl.append(storyIDEl);
-        divEl.append(taskDescEl);
-        divEl.append(btnEl);
-        $("#story-section").append(divEl);
-      }
-    }
-    // renders message following task save or update
-    function projectMessage(messageType) {
-      $("#dynamic-story-section").empty();
-      sectionEl = htmlEl("section", ["section-container mx-auto text-center"]);
-      messageEl = htmlEl("p", ["section-message", "none"]);
-      messageType === "save"
-        ? messageEl.text("Story added!")
-        : messageEl.text("Story updated!");
-      sectionEl.append(messageEl);
-      $("#dynamic-story-section").append(sectionEl);
-    }
     // renders message following details update
     function detailsMessage() {
       $("#details-message").empty();
@@ -220,12 +60,6 @@ $(() => {
       messageEl.text("Project details updated!");
       $("#details-message").append(messageEl);
     }
-    // function infoMessage() {
-    //   $("#info-message").empty();
-    //   const messageEl = htmlEl("p", ["section-message", "none"]);
-    //   messageEl.text("Project information updated!");
-    //   $("#info-message").append(messageEl);
-    // }
     // generates arrowBtn svg elements
     function createSVG(inputID, btnType) {
       const ref = {
