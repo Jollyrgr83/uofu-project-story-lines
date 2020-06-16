@@ -1,30 +1,28 @@
-// Requiring path to so we can use relative routes to our HTML files
-// const path = require("path");
+// importing models
 const db = require("../models");
-// Requiring our custom middleware for checking if a user is logged in
+// authentication middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-
+// html routes
 module.exports = function(app) {
   app.get("/", (req, res) => {
-    // If the user already has an account send them to the dashboard page
+    // if the user already has an account send them to the dashboard page
     if (req.user) {
       return res.redirect("/dash");
     }
-
+    // else send user to signup page
     return res.render("auth-signup", { title: "signup" });
   });
-
   app.get("/login", (req, res) => {
-    // If the user already has an account send them to the dashboard page
+    // if the user already has an account send them to the dashboard page
     if (req.user) {
       return res.redirect("/dash");
     }
-
+    // else send user to login page
     return res.render("auth-login", { title: "login" });
   });
-
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  // isAuthentication checks if a user is logged in before sending user to
+  // the requested route, if a user is not logged in, the user is redirected
+  // to the login page
   app.get("/dash", isAuthenticated, (req, res) => {
     userID = req.user.id;
     // let hbsObj = {
@@ -85,12 +83,48 @@ module.exports = function(app) {
     res.render("story", { title: "story" });
   });
 
-  // generic project page for testing (remove this after testing)
   app.get("/project/:id/", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
-      console.log(`Project - ${projectID}`);
-      res.render("project", { title: `Project - ${projectID}` });
+      const userID = parseInt(req.user.id);
+      const hbsObj = { array: [{ user: [], project: [], story: [] }] };
+      db.User.findAll({
+        attributes: ["id", "name"]
+      }).then(data => {
+        hbsObj.array[0].user = data.map(x => {
+          let bool = false;
+          if (x.id === userID) {
+            bool = true;
+          }
+          return { id: x.id, name: x.name, active: bool };
+        });
+        db.Project.findOne({
+          attributes: ["id", "title", "description", "createdAt"],
+          where: {
+            id: projectID
+          }
+        }).then(data => {
+          hbsObj.array[0].project[0] = {
+            id: data.id,
+            title: data.title,
+            description: data.description,
+            createdAt: data.createdAt
+          };
+          db.Story.findAll({
+            attributes: ["id", "title"],
+            where: {
+              project: projectID
+            }
+          }).then(data => {
+            hbsObj.array[0].story = data.map(x => {
+              return { id: x.id, title: x.title };
+            });
+            console.log(hbsObj.array[0].story);
+            hbsObj.array[0].title = `Project ${projectID} - ${hbsObj.array[0].project[0].title}`;
+            res.render("project", hbsObj);
+          });
+        });
+      });
     }
   });
 
