@@ -9,82 +9,73 @@
     {{> main/nav-menu-block}}
   </header>
   <main>
+    <!-- title -->
     <section class="title-container mx-auto">
-      <h1 class="title mx-auto">Story 22 - Project 13</h1>
+      <h1 id="story-title" class="title mx-auto">Story 22 - Project 13</h1>
     </section>
+    <!-- information -->
     <section class="section-container mx-auto text-center">
+      <p class="section-title">Information</p>
       <div class="row-container row mx-auto">
-        <p class="subtitle story-info mx-auto">Reporter:</p> 
-        <p class="subtitle story-info mx-auto">Assignee:</p>   
+        <p class="subtitle">Reporter</p> 
+        <p class="subtitle">Assignee</p>
       </div>
       <div class="row-container row mx-auto">
-        <p class="section-item story-info mx-auto">jhwatson</p>  
-        <p class="section-item story-info mx-auto">sholmes</p>  
+        <select id="reporter" class="info-select">
+          <option value="0">sholmes</option>
+          <option value="1">absmith</option>
+          <option value="2">cdevans</option>
+          <option value="3">efskinner</option>
+        </select>  
+        <select id="assignee" class="info-select">
+          <option value="0">jhwatson</option>
+          <option value="1">ghingles</option>
+          <option value="2">ijpatel</option>
+          <option value="3">klmanning</option>
+        </select>  
+      </div>   
+      <div class="row-container row mx-auto">
+        <p class="subtitle">Created</p> 
+        <p class="subtitle">Due</p>   
       </div>
       <div class="row-container row mx-auto">
-        <p class="subtitle story-info mx-auto">Created:</p> 
-        <p class="subtitle story-info mx-auto">Estimated:</p>   
+        <p id="created" class="story-info-item"></p>  
+        <input id="estimated" class="story-info-input" />  
       </div>
       <div class="row-container row mx-auto">
-        <p class="section-item story-info mx-auto">04/01/20 08:30</p>  
-        <p class="section-item red story-info mx-auto">3 Days</p>  
-      </div>
-
-    </section>
-    <section class="section-container mx-auto text-center">
-      <div class="row-container row mx-auto">
-        <p class="section-title">Details</p>
-        <svg class="story-btn bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-          <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-        </svg>
-      </div>
-      <p class="story-details mx-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, mollitia, nihil quod a, molestiae qui ab cumque expedita laboriosam aliquid blanditiis tempora. Esse molestias dolorum corporis eum eos, animi nam!</p>  
-    </section>
-    <!-- Add/Edit Section - Only rendered if add or edit buttons are clicked -->
-    <section class="section-container mx-auto text-center">
-      <div class="row-container row mx-auto">
-        <p class="section-title">Add/Edit Task</p>
-        <svg class="story-btn bi bi-arrow-clockwise" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <div>
+          <p class="subtitle">Status</p>
+          <select id="status" class="info-select">
+            <option value="0">Todo</option>
+            <option value="1">Blocked</option>
+            <option value="2">In Progress</option>
+            <option value="3">Completed</option>
+          </select>  
+        </div>
+        <svg id="save-info-btn" class="story-btn bi bi-arrow-clockwise" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
           <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
         </svg>
       </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day">17</p>
-        <input id="task-input" class="story-input" type="text" value="task description" />
-        <select id="sort-select" class="status-select mx-auto">
-          <option value="0">Todo</option>
-          <option value="1">Blocked</option>
-          <option value="2">In Progress</option>
-          <option value="3">Completed</option>
-        </select>
-      </div>
+      <div id="info-message"></div>
     </section>
+    <!-- story details -->
+    <section class="section-container mx-auto text-center">
+      <div id="details-section"></div>
+      <div id="details-message"></div>
+    </section>
+    <!-- add/edit task -->
+    <div id="dynamic-task-section"></div>
     <section class="section-container mx-auto text-center">
       <div class="row-container row mx-auto">
         <p class="section-title">Tasks</p>
-        <svg class="story-btn bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg id="add-task-btn" class="story-btn bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
           <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
         </svg>
       </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day">28</p>
-        <p class="section-item dash-story">In Progress - Search Bar Functionality</p>
-        <svg class="story-btn bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-          <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-        </svg>
-      </div>
-      <div class="row-container row mx-auto">
-        <p class="section-item dash-day">28</p>
-        <p class="section-item dash-story">In Progress - Search</p>
-        <svg class="story-btn bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-          <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-        </svg>
-      </div>
+      <!-- tasks associated with story -->
+      <div id="task-section"></div>
   </section>
   </main>
 </body>
