@@ -21,8 +21,8 @@
         <p class="subtitle half">Assignee</p>
       </div>
       <div class="row-container row mx-auto">
-        <p class="section-item half">{{#each array}}{{#each story}}{{reporterID}}{{/each}}{{/each}}</p>
-        <p class="section-item half">{{#each array}}{{#each story}}{{assigneeID}}{{/each}}{{/each}}</p>
+        <p class="section-item half">{{#each array}}{{#each story}}{{reporter}}{{/each}}{{/each}}</p>
+        <p class="section-item half">{{#each array}}{{#each story}}{{assignee}}{{/each}}{{/each}}</p>
       </div>   
       <div class="row-container row mx-auto">
         <p class="subtitle half">Created</p> 
@@ -30,7 +30,7 @@
       </div>
       <div class="row-container row mx-auto">
         <p id="created" class="section-item half">{{#each array}}{{#each story}}{{createdAt}}{{/each}}{{/each}}</p>  
-        <p id="due" class="section-item half">{{#each array}}{{#each story}}{{due}}{{/each}}{{/each}}</p> 
+        <p id="due" class="section-item half {{#each array}}{{#each story}}{{colorClass}}{{/each}}{{/each}}">{{#each array}}{{#each story}}{{due}}{{/each}}{{/each}}</p> 
       </div>
       <div class="row-container row mx-auto">
         <p class="subtitle half">Estimated</p>

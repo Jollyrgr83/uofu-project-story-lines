@@ -2,6 +2,46 @@
 const db = require("../models");
 // authentication middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+// date function for calculating due date
+Date.prototype.addDays = function(days) {
+  const date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+};
+// function to calculate days remaining
+const daysLeft = function(dateOld, dateNew) {
+  return parseFloat(((dateNew - dateOld) / 86400000).toFixed(1));
+};
+// function to return formatted date string
+const displayDate = function(dateObj) {
+  let month = (dateObj.getMonth() + 1).toString();
+  if (month.length === 1) {
+    month = `0${month}`;
+  }
+  let days = dateObj.getDate().toString();
+  if (days.length === 1) {
+    days = `0${days}`;
+  }
+  let hours = dateObj.getHours();
+  if (hours.toString().length === 1) {
+    hours = `0${hours}`;
+  }
+  let minutes = dateObj.getMinutes();
+  if (minutes.toString().length === 1) {
+    minutes = `0${minutes}`;
+  }
+  return `${month}/${days} ${hours}:${minutes}`;
+};
+// function that returns color class for days left
+const colorClass = function(num) {
+  if (num <= 1) {
+    return "red";
+  }
+  if (num <= 3) {
+    return "yellow";
+  }
+  return "green";
+};
 // html routes
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -198,10 +238,52 @@ module.exports = function(app) {
       });
     }
   });
-
-  // generic story page for testing (remove this after testing)
-  app.get("/story", isAuthenticated, (req, res) => {
-    res.render("story", { title: "story" });
+  // view story route
+  app.get("/story/view/:id", isAuthenticated, (req, res) => {
+    if (req.params.id && !isNaN(parseInt(req.params.id))) {
+      const storyID = parseInt(req.params.id);
+      const hbsObj = {
+        array: [{ id: storyID, title: "", story: [], task: [], status: [] }]
+      };
+      db.Story.findOne({
+        where: {
+          id: storyID
+        }
+      }).then(data => {
+        const timeNow = new Date();
+        const timeStart = new Date(data.createdAt);
+        console.log(timeNow);
+        hbsObj.array[0].story.push({
+          id: data.id,
+          title: data.title,
+          description: data.description,
+          status: data.status,
+          project: data.project,
+          assignee: data.assignee,
+          reporter: data.reporter,
+          estimate: data.estimate,
+          createdAt: displayDate(new Date(data.createdAt)),
+          due: displayDate(timeStart.addDays(data.estimate)),
+          days: daysLeft(timeNow, timeStart.addDays(data.estimate)),
+          colorClass: colorClass(
+            daysLeft(timeNow, timeStart.addDays(data.estimate))
+          )
+        });
+        console.log(hbsObj.array[0].story[0]);
+        hbsObj.array[0].title = `Project ${hbsObj.array[0].story[0].project} - Story ${storyID}`;
+        db.Task.findAll({
+          where: {
+            story: storyID
+          }
+        }).then(data => {
+          hbsObj.array[0].task = [...data];
+          db.Status.findAll({}).then(data => {
+            hbsObj.array[0].status = [...data];
+            res.render("story", hbsObj);
+          });
+        });
+      });
+    }
   });
 
   // const crypto = require("crypto");

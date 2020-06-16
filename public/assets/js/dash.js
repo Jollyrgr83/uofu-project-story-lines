@@ -7,7 +7,7 @@ $(() => {
     if (textID === "project") {
       window.location.href = `/project/view/${numID}`;
     } else if (textID === "story") {
-      window.location.href = "/story/";
+      window.location.href = `/story/view/${numID}`;
     }
   });
 });

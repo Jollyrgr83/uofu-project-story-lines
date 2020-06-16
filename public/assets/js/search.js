@@ -56,7 +56,7 @@ $(() => {
       sectionEl.append(sectionTitleEl);
       for (let i = 0; i < db.projects.length; i++) {
         const rowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-        const pEl = htmlEl("p", ["section-item dash-project", "none"]);
+        const pEl = htmlEl("p", ["section-item long", "none"]);
         pEl.text(`Project ${db.projects[i].id} - ${db.projects[i].name}`);
         const svgEl = createSVG(
           `arrowProject-${db.projects[i].id}`,
@@ -85,12 +85,12 @@ $(() => {
       sectionEl.append(sectionTitleEl);
       for (let i = 0; i < db.stories.length; i++) {
         const rowEl = htmlEl("div", ["row-container row mx-auto", "none"]);
-        const pStoryEl = htmlEl("p", ["section-item dash-story", "none"]);
+        const pStoryEl = htmlEl("p", ["section-item medium", "none"]);
         pStoryEl.text(
           `Project ${db.stories[i].projectID} - Story ${db.stories[i].id}`
         );
         const svgEl = createSVG(`arrowStory-${db.stories[i].id}`, "arrowStory");
-        const pDayEl = htmlEl("p", ["section-item dash-day", "none"]);
+        const pDayEl = htmlEl("p", ["section-item short", "none"]);
         pDayEl.text(db.stories[i].id);
         rowEl.append(pDayEl);
         rowEl.append(pStoryEl);
