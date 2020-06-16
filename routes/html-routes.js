@@ -55,7 +55,7 @@ module.exports = function(app) {
       db.Project.findOne({
         where: { id: projectID }
       }).then(data => {
-        console.log("data", data);
+        console.log("data", data.dataValues);
       });
     }
     res.render("project", { title: "project" });
