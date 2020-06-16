@@ -1,11 +1,11 @@
 const crypto = require("crypto");
-const User =require("./user");
+const User = require("./user");
 
 require("dotenv").config();
 
 const nodemailer = require("nodemailer");
 
-module.exports = (app) => {
+module.exports = app => {
   app.post("/forgotPassword", (req, res) => {
     if (req.body.email === "") {
       res.status(400).send("email required");
@@ -13,9 +13,9 @@ module.exports = (app) => {
     console.error(req.body.email);
     User.findOne({
       where: {
-        email: req.body.email,
-      },
-    }).then((user) => {
+        email: req.body.email
+      }
+    }).then(user => {
       if (user === null) {
         console.error("email not in database");
         res.status(403).send("email not in db");
@@ -23,15 +23,15 @@ module.exports = (app) => {
         const token = crypto.randomBytes(20).toString("hex");
         user.update({
           resetPasswordToken: token,
-          resetPasswordExpires: Date.now() + 3600000,
+          resetPasswordExpires: Date.now() + 3600000
         });
 
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
             user: `${process.env.EMAIL_ADDRESS}`,
-            pass: `${process.env.EMAIL_PASSWORD}`,
-          },
+            pass: `${process.env.EMAIL_PASSWORD}`
+          }
         });
 
         const mailOptions = {
