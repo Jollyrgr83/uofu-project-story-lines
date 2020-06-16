@@ -22,20 +22,9 @@ module.exports = function(app) {
     // else send user to login page
     return res.render("auth-login", { title: "login" });
   });
-  // isAuthentication checks if a user is logged in before sending user to
-  // the requested route, if a user is not logged in, the user is redirected
-  // to the login page
+  // dashboard route
   app.get("/dash", isAuthenticated, (req, res) => {
     userID = req.user.id;
-    // let hbsObj = {
-    //   arrays: [
-    //     {
-    //       title: "Page Title",
-    //       projects: [ { id: ##, title: ## }],
-    //       stories: [ { id: ##, title: ##, projectID: ##, projectTitle: ##, daysRem: ## } ]
-    //     }
-    //   ]
-    // };
     const hbsObj = { array: [{ title: "Dashboard", project: [], story: [] }] };
     db.Project.findAll({
       attributes: ["id", "title"],
@@ -64,25 +53,13 @@ module.exports = function(app) {
       });
     });
   });
-
+  // add project route
   app.get("/add", isAuthenticated, (req, res) => {
     res.render("add", { title: "add" });
   });
-
+  // search route
   app.get("/search", isAuthenticated, (req, res) => {
     res.render("search", { title: "search" });
-  });
-
-  app.get("/story/id/:id", isAuthenticated, (req, res) => {
-    if (req.params.id || !isNaN(parseInt(req.params.id))) {
-      const storyID = parseInt(req.params.id);
-      db.Story.findOne({
-        where: { id: storyID }
-      }).then(data => {
-        console.log("data", data);
-      });
-    }
-    res.render("story", { title: "story" });
   });
   // view project route
   app.get("/project/view/:id/", isAuthenticated, (req, res) => {
@@ -134,19 +111,9 @@ module.exports = function(app) {
   app.get("/project/add/:id", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
-      // const userID = parseInt(req.user.id);
       const hbsObj = {
         array: [{ id: projectID, title: "", user: [], status: [] }]
       };
-      // const hbsObj = {
-      //   array: [
-      //     {
-      //       title: "title",
-      //       user: [ { id: #, name: # } ],
-      //       status: [ {id: #, status: # } ],
-      //     }
-      //   ]
-      // }
       db.User.findAll({
         attributes: ["id", "name"]
       }).then(data => {
@@ -169,19 +136,9 @@ module.exports = function(app) {
   app.get("/project/edit/:id", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
-      // const userID = parseInt(req.user.id);
       const hbsObj = {
         array: [{ id: projectID, title: "", user: [], status: [] }]
       };
-      // const hbsObj = {
-      //   array: [
-      //     {
-      //       title: "title",
-      //       user: [ { id: #, name: # } ],
-      //       status: [ {id: #, status: # } ],
-      //     }
-      //   ]
-      // }
       db.User.findAll({
         attributes: ["id", "name"]
       }).then(data => {
