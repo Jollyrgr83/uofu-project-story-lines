@@ -278,7 +278,6 @@ textarea:enabled, textarea:focus, textarea:active {
   background-color: whitesmoke;
   color: navy;
   text-align: center;
-  rows: 4;
   /* height: 2.25em; */
 }
 select:enabled, select:focus, select:active {
