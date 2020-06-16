@@ -5,7 +5,7 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
 }
-/* navigation bar and other page buttons */
+/* navigation bar and page buttons */
 .nav-bar {
   width: 95%;
   margin: 10px;
@@ -21,7 +21,7 @@
 .arrow-btn {
   color: navy;
   font-size: 24px;
-  margin: 0;
+  margin: 5px;
   border-radius: 5px;
   background-color: lightgray;
   box-shadow: 1px 1px 5px navy;
@@ -43,11 +43,11 @@
   background-color: navy;
   font-size: 16px;
   padding: 5px;
-  margin: 10px 5px 10px 10px;
+  margin: 10px;
   border-radius: 40px;
   color: white;
   box-shadow: 1px 1px 5px navy;
-  width: 50%;
+  width: 40%;
 }
 .nav-btn:hover, .arrow-btn:hover, .story-btn:hover, button:hover, .nav-btn:focus, .arrow-btn:focus, .story-btn:focus, .button:focus {
   cursor: pointer;
@@ -90,13 +90,24 @@ svg > * {
 .section-title {
   font-size: 20px;
   text-align: start;
-  margin: 0;
+  margin: 5px 5px 0 5px;
   color:navy;
-  height: 2.25em;
-  width: 88%;
+  height: 2em;
+}
+.subtitle {
+  margin: 5px;
+  padding: 5px;
+  color: navy;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: lightgray;
+  background-color: navy;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px navy;
 }
 .section-item {
-  margin-right: 10px;
+  margin: 5px;
   padding: 5px;
   border-radius: 5px;
   color: navy;
@@ -105,6 +116,82 @@ svg > * {
   box-shadow: 1px 1px 5px navy;
   height: 2.25em;
 }
+.section-item-tall {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  color: navy;
+  background-color: whitesmoke;
+  font-size: 16px;
+  box-shadow: 1px 1px 5px navy;
+}
+.full {
+  width: 320px;
+}
+.half {
+  width: 150px;
+}
+.long {
+  width: 264px;
+}
+.medium {
+  width: 217px;
+}
+.medium-short-1 {
+  width: 175px;
+}
+.medium-short-2 {
+  width: 75px;
+}
+.short {
+  width: 37px;
+}
+.row-container {
+  width: 320px;
+  padding: 0;
+  margin: 0;
+}
+select:enabled, select:focus, select:active {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: left;
+  height: 2.25em;
+}
+input:enabled, input:focus, input:active {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: left;
+  height: 2.25em;
+}
+textarea:enabled, textarea:focus, textarea:active {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: left;
+}
+
+/*===================*/
+
 .section-message {
   font-size: 20px;
   text-align: start;
@@ -136,37 +223,11 @@ svg > * {
   text-align: start;
   width: 95%;
 }
-.dash-project {
-  width: 272px;
-}
-.dash-day {
-  width: 37px;
-}
-.dash-story {
-  width: 225px;
-  overflow: auto;
-}
+
 .task {
   width: 71%;
 }
-.row-container {
-  width: 320px;
-  padding: 0;
-  margin: 0;
-}
-.subtitle {
-  margin: 5px;
-  padding: 5px;
-  color: navy;
-  font-size: 16px;
-  width: 150px;
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
-  color: lightgray;
-  background-color: navy;
-  border-radius: 5px;
-  box-shadow: 1px 1px 5px navy;
-}
+
 /* color-coding for time-related elements */
 .red {
   background-color: rgba(255, 0, 0, 60%);
@@ -178,48 +239,8 @@ svg > * {
   background-color: rgba(50, 205, 50, 60%);
 }
 /* user input elements */
-input:enabled, input:focus, input:active {
-  outline: none;
-  border-radius: 5px;
-  border: none;
-  font-size: 16px;
-  width: 100%;
-  margin: 0 0 10px 0;
-  padding: 5px 0 5px 0;
-  box-shadow: 1px 1px 5px navy;
-  background-color: whitesmoke;
-  color: navy;
-  text-align: center;
-  height: 2.25em;
-}
-textarea:enabled, textarea:focus, textarea:active {
-  outline: none;
-  border-radius: 5px;
-  border: none;
-  font-size: 16px;
-  width: 100%;
-  margin: 0 0 10px 0;
-  padding: 5px 0 5px 0;
-  box-shadow: 1px 1px 5px navy;
-  background-color: whitesmoke;
-  color: navy;
-  text-align: center;
-  /* height: 2.25em; */
-}
-select:enabled, select:focus, select:active {
-  outline: none;
-  border-radius: 5px;
-  border: none;
-  font-size: 16px;
-  width: 100%;
-  margin: 0 0 10px 0;
-  padding: 5px 0 5px 0;
-  box-shadow: 1px 1px 5px navy;
-  background-color: whitesmoke;
-  color: navy;
-  text-align: center;
-  height: 2.25em;
-}
+
+
 .status-select:enabled, .status-select:focus, .status-select:active {
   outline: none;
   border-radius: 5px;
@@ -289,7 +310,7 @@ select:enabled, select:focus, select:active {
   color: navy;
   text-align: center;
 }
-.info-select:enabled, .info-select:focus, .info-select:active {
+/* .info-select:enabled, .info-select:focus, .info-select:active {
   outline: none;
   border: none;
   border-radius: 5px;
@@ -302,7 +323,7 @@ select:enabled, select:focus, select:active {
   background-color: whitesmoke;
   color: navy;
   text-align: center;
-}
+} */
 #save-info-btn {
   margin-top: 50px;
   margin-left: 115px;

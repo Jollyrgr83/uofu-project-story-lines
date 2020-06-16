@@ -82,7 +82,7 @@ module.exports = function(app) {
     }
     res.render("story", { title: "story" });
   });
-
+  // view project route
   app.get("/project/view/:id/", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
@@ -128,7 +128,7 @@ module.exports = function(app) {
       });
     }
   });
-
+  // add story route
   app.get("/project/add/:id", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
@@ -159,6 +159,41 @@ module.exports = function(app) {
           });
           hbsObj.array[0].title = `Project ${projectID} - Add Story`;
           res.render("project-add-story", hbsObj);
+        });
+      });
+    }
+  });
+  // edit story route
+  app.get("/project/edit/:id", isAuthenticated, (req, res) => {
+    if (req.params.id && !isNaN(parseInt(req.params.id))) {
+      const projectID = parseInt(req.params.id);
+      // const userID = parseInt(req.user.id);
+      const hbsObj = {
+        array: [{ id: projectID, title: "", user: [], status: [] }]
+      };
+      // const hbsObj = {
+      //   array: [
+      //     {
+      //       title: "title",
+      //       user: [ { id: #, name: # } ],
+      //       status: [ {id: #, status: # } ],
+      //     }
+      //   ]
+      // }
+      db.User.findAll({
+        attributes: ["id", "name"]
+      }).then(data => {
+        hbsObj.array[0].user = data.map(x => {
+          return { id: x.id, name: x.name };
+        });
+        db.Status.findAll({
+          attributes: ["states"]
+        }).then(data => {
+          hbsObj.array[0].status = data.map(x => {
+            return { states: x.states };
+          });
+          hbsObj.array[0].title = `Project ${projectID} - Edit Story`;
+          res.render("project-edit-story", hbsObj);
         });
       });
     }
