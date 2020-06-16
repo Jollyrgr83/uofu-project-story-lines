@@ -39,6 +39,8 @@ $(document).ready(() => {
     );
     emailInput.val("");
     passwordInput.val("");
+    nameInput.val("");
+    phoneInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the dashboard page
