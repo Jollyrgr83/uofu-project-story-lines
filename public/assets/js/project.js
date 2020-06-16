@@ -5,7 +5,10 @@ $(() => {
       const clickID = $(event.target).attr("id");
       const clickClass = $(event.target).attr("class");
       if (clickID === "add-story-btn") {
-        // $.get("/project/project_id/add");
+        // console.log($("#project-title").attr("data-id"));
+        window.location.href = `/project/add/${$("#project-title").attr(
+          "data-id"
+        )}`;
       }
       if (clickClass.indexOf("pencil") !== -1) {
         if (clickID.split("-")[1] === "details") {

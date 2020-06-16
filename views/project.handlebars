@@ -1,5 +1,5 @@
 <head>
-    <title>story lines | {{title}}</title>
+    <title>story lines | {{#each array}}{{title}}{{/each}}</title>
     {{> main/head-block}}
     <!-- story page js script -->
     <script type="text/javascript" src="/assets/js/project.js"></script>
@@ -10,7 +10,7 @@
   </header>
   <main>
     <section class="title-container mx-auto">
-      <h1 id="project-title" class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
+      <h1 id="project-title" data-id="{{#each array}}{{id}}{{/each}}" class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Information</p>

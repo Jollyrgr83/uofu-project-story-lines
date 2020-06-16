@@ -111,9 +111,22 @@
   background-color: whitesmoke;
   box-shadow: 1px 1px 5px navy;
 }
-.nav-btn:hover, .arrow-btn:hover, .story-btn:hover {
+.button {
+  outline: none;
+  border: none;
+  background-color: navy;
+  font-size: 16px;
+  padding: 5px;
+  margin: 10px 5px 10px 10px;
+  border-radius: 40px;
+  color: white;
+  box-shadow: 1px 1px 5px navy;
+  width: 50%;
+}
+.nav-btn:hover, .arrow-btn:hover, .story-btn:hover, button:hover, .nav-btn:focus, .arrow-btn:focus, .story-btn:focus, .button:focus {
   cursor: pointer;
   opacity: 0.7;
+  outline: none;
 }
 /* prevents mouse clicks on child elements for vector icons */
 i > * {
@@ -239,12 +252,41 @@ svg > * {
   background-color: rgba(50, 205, 50, 60%);
 }
 /* user input elements */
+input:enabled, input:focus, input:active {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 5px 0 5px 0;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+  height: 2.25em;
+}
+textarea:enabled, textarea:focus, textarea:active {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 5px 0 5px 0;
+  box-shadow: 1px 1px 5px navy;
+  background-color: whitesmoke;
+  color: navy;
+  text-align: center;
+  rows: 4;
+  /* height: 2.25em; */
+}
 select:enabled, select:focus, select:active {
   outline: none;
   border-radius: 5px;
   border: none;
   font-size: 16px;
-  width: 95%;
+  width: 100%;
   margin: 0 0 10px 0;
   padding: 5px 0 5px 0;
   box-shadow: 1px 1px 5px navy;
