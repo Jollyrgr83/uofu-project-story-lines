@@ -226,7 +226,10 @@ module.exports = function(app) {
           estimate: data.estimate,
           createdAt: display.displayDate(new Date(data.createdAt)),
           due: display.displayDate(display.addDays(timeStart, data.estimate)),
-          days: display.daysLeft(timeNow, display.addDays(timeStart, data.estimate)),
+          days: display.daysLeft(
+            timeNow,
+            display.addDays(timeStart, data.estimate)
+          ),
           colorClass: display.colorClass(
             display.daysLeft(timeNow, display.addDays(timeStart, data.estimate))
           )
