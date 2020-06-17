@@ -1,5 +1,5 @@
 <head>
-    <title>story lines | {{title}}</title>
+    <title>story lines | {{#each array}}{{title}}{{/each}}</title>
     {{> main/head-block}}
     <!-- story page js script -->
     <script type="text/javascript" src="/assets/js/project.js"></script>
@@ -10,46 +10,43 @@
   </header>
   <main>
     <section class="title-container mx-auto">
-      <h1 id="project-title" class="title mx-auto">{{title}}</h1>
+      <h1 id="project-title" data-id="{{#each array}}{{id}}{{/each}}" class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Information</p>
       <div class="row-container row mx-auto">
-        <p class="subtitle mx-auto">Owner</p> 
-        <p class="subtitle mx-auto">Created</p>
+        <p class="subtitle half mx-auto">Owner</p> 
+        <p class="subtitle half mx-auto">Created</p>
       </div>
       <div class="row-container row mx-auto">
-        <select id="reporter" class="info-select mx-auto">
-          <option value="0">sholmes</option>
-          <option value="1">absmith</option>
-          <option value="2">cdevans</option>
-          <option value="3">efskinner</option>
+        <select id="owner-select" class="half mx-auto">
+          {{#each array}}
+            {{#each user}}
+              {{> project/option}}
+            {{/each}}
+          {{/each}}
         </select>  
-        <p id="created" class="story-info-item mx-auto"></p>  
+        <p id="created" class="section-item half mx-auto">{{#each array}}{{#each project}}{{createdAt}}{{/each}}{{/each}}</p>  
       </div>   
-      {{!-- <svg id="save-info-btn" class="story-btn bi bi-arrow-clockwise" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
-        <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
-      </svg>
-      <div id="info-message"></div> --}}
     </section>
     <!-- project details -->
     <section class="section-container mx-auto text-center">
-      <div id="details-section"></div>
-      <div id="details-message"></div>
+      <p class="section-title">Description</p>
+      <p class="section-item-tall full mx-auto">{{#each array}}{{#each project}}{{description}}{{/each}}{{/each}}</p>
     </section>
-    <!-- add/edit story -->
-    <div id="dynamic-story-section"></div>
-    <section class="section-container mx-auto text-center">
+    <section class="section-container mx-auto">
       <div class="row-container row mx-auto">
-        <p class="section-title">Stories</p>
-        <svg id="add-story-btn" class="story-btn bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
-        </svg>
+        <button id="edit-project-btn" class="button mx-auto">Edit Project</button>
+        <button id="add-story-btn" class="button mx-auto">Add Story</button>
       </div>
-      <!-- stories associated with project -->
-      <div id="story-section"></div>
+    </section>
+    <section class="section-container mx-auto text-center">
+      <p class="section-title">Stories</p>
+      {{#each array}}
+        {{#each story}}
+          {{> project/story}}
+        {{/each}}
+      {{/each}}
   </section>
   </main>
 </body>

@@ -1,41 +1,30 @@
-// Requiring path to so we can use relative routes to our HTML files
-// const path = require("path");
+// importing models
 const db = require("../models");
-// Requiring our custom middleware for checking if a user is logged in
+// authentication middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-
+// import library functions
+const display = require("../lib/display");
+// html routes
 module.exports = function(app) {
   app.get("/", (req, res) => {
-    // If the user already has an account send them to the dashboard page
+    // if the user already has an account send them to the dashboard page
     if (req.user) {
       return res.redirect("/dash");
     }
-
+    // else send user to signup page
     return res.render("auth-signup", { title: "signup" });
   });
-
   app.get("/login", (req, res) => {
-    // If the user already has an account send them to the dashboard page
+    // if the user already has an account send them to the dashboard page
     if (req.user) {
       return res.redirect("/dash");
     }
-
+    // else send user to login page
     return res.render("auth-login", { title: "login" });
   });
-
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  // dashboard route
   app.get("/dash", isAuthenticated, (req, res) => {
     userID = req.user.id;
-    // let hbsObj = {
-    //   arrays: [
-    //     {
-    //       title: "Page Title",
-    //       projects: [ { id: ##, title: ## }],
-    //       stories: [ { id: ##, title: ##, projectID: ##, projectTitle: ##, daysRem: ## } ]
-    //     }
-    //   ]
-    // };
     const hbsObj = { array: [{ title: "Dashboard", project: [], story: [] }] };
     db.Project.findAll({
       attributes: ["id", "title"],
@@ -64,39 +53,159 @@ module.exports = function(app) {
       });
     });
   });
-
+  // add project route
   app.get("/add", isAuthenticated, (req, res) => {
     res.render("add", { title: "add" });
   });
-
+  // search route
   app.get("/search", isAuthenticated, (req, res) => {
     res.render("search", { title: "search" });
   });
-
-  app.get("/story/id/:id", isAuthenticated, (req, res) => {
-    if (req.params.id || !isNaN(parseInt(req.params.id))) {
-      const storyID = parseInt(req.params.id);
-      db.Story.findOne({
-        where: { id: storyID }
-      }).then(data => {
-        console.log("data", data);
-      });
-    }
-    res.render("story", { title: "story" });
-  });
-
-  // generic project page for testing (remove this after testing)
-  app.get("/project/:id/", isAuthenticated, (req, res) => {
+  // view project route
+  app.get("/project/view/:id/", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
-      console.log(`Project - ${projectID}`);
-      res.render("project", { title: `Project - ${projectID}` });
+      const userID = parseInt(req.user.id);
+      const hbsObj = { array: [{ user: [], project: [], story: [] }] };
+      db.User.findAll({
+        attributes: ["id", "name"]
+      }).then(data => {
+        hbsObj.array[0].user = data.map(x => {
+          let bool = false;
+          if (x.id === userID) {
+            bool = true;
+          }
+          return { id: x.id, name: x.name, active: bool };
+        });
+        db.Project.findOne({
+          attributes: ["id", "title", "description", "createdAt"],
+          where: {
+            id: projectID
+          }
+        }).then(data => {
+          hbsObj.array[0].project[0] = {
+            id: data.id,
+            title: data.title,
+            description: data.description,
+            createdAt: data.createdAt
+          };
+          db.Story.findAll({
+            attributes: ["id", "title"],
+            where: {
+              project: projectID
+            }
+          }).then(data => {
+            hbsObj.array[0].story = data.map(x => {
+              return { id: x.id, title: x.title };
+            });
+            console.log(hbsObj.array[0].story);
+            hbsObj.array[0].title = `Project ${projectID} - ${hbsObj.array[0].project[0].title}`;
+            hbsObj.array[0].id = projectID;
+            res.render("project", hbsObj);
+          });
+        });
+      });
     }
   });
-
-  // generic story page for testing (remove this after testing)
-  app.get("/story", isAuthenticated, (req, res) => {
-    res.render("story", { title: "story" });
+  // add story route
+  app.get("/project/add/:id", isAuthenticated, (req, res) => {
+    if (req.params.id && !isNaN(parseInt(req.params.id))) {
+      const projectID = parseInt(req.params.id);
+      const hbsObj = {
+        array: [{ id: projectID, title: "", user: [], status: [] }]
+      };
+      db.User.findAll({
+        attributes: ["id", "name"]
+      }).then(data => {
+        hbsObj.array[0].user = data.map(x => {
+          return { id: x.id, name: x.name };
+        });
+        db.Status.findAll({
+          attributes: ["states"]
+        }).then(data => {
+          hbsObj.array[0].status = data.map(x => {
+            return { states: x.states };
+          });
+          hbsObj.array[0].title = `Project ${projectID} - Add Story`;
+          res.render("project-add-story", hbsObj);
+        });
+      });
+    }
+  });
+  // edit story route
+  app.get("/project/edit/:id", isAuthenticated, (req, res) => {
+    if (req.params.id && !isNaN(parseInt(req.params.id))) {
+      const projectID = parseInt(req.params.id);
+      const hbsObj = {
+        array: [{ id: projectID, title: "", user: [], status: [] }]
+      };
+      db.User.findAll({
+        attributes: ["id", "name"]
+      }).then(data => {
+        hbsObj.array[0].user = data.map(x => {
+          return { id: x.id, name: x.name };
+        });
+        db.Status.findAll({
+          attributes: ["states"]
+        }).then(data => {
+          hbsObj.array[0].status = data.map(x => {
+            return { states: x.states };
+          });
+          hbsObj.array[0].title = `Project ${projectID} - Edit Story`;
+          res.render("project-edit-story", hbsObj);
+        });
+      });
+    }
+  });
+  // view story route
+  app.get("/story/view/:id", isAuthenticated, (req, res) => {
+    if (req.params.id && !isNaN(parseInt(req.params.id))) {
+      const storyID = parseInt(req.params.id);
+      const hbsObj = {
+        array: [{ id: storyID, title: "", story: [], task: [], status: [] }]
+      };
+      db.Story.findOne({
+        where: {
+          id: storyID
+        }
+      }).then(data => {
+        const timeNow = new Date();
+        const timeStart = new Date(data.createdAt);
+        console.log(timeNow);
+        hbsObj.array[0].story.push({
+          id: data.id,
+          title: data.title,
+          description: data.description,
+          status: data.status,
+          project: data.project,
+          assignee: data.assignee,
+          reporter: data.reporter,
+          estimate: data.estimate,
+          createdAt: display.displayDate(new Date(data.createdAt)),
+          due: display.displayDate(display.addDays(timeStart, data.estimate)),
+          days: display.daysLeft(
+            timeNow,
+            display.addDays(timeStart, data.estimate)
+          ),
+          colorClass: display.colorClass(
+            display.daysLeft(timeNow, display.addDays(timeStart, data.estimate))
+          )
+        });
+        console.log(hbsObj.array[0].story[0]);
+        hbsObj.array[0].title = `Project ${hbsObj.array[0].story[0].project} - Story ${storyID}`;
+        db.Task.findAll({
+          where: {
+            story: storyID
+          }
+        }).then(data => {
+          hbsObj.array[0].task = [...data];
+          db.Status.findAll({}).then(data => {
+            hbsObj.array[0].status = [...data];
+            res.render("story", hbsObj);
+          });
+        });
+      });
+    }
   });
 
   // const crypto = require("crypto");
