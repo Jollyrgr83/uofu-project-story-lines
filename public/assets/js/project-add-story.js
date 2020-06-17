@@ -1,8 +1,9 @@
 $(() => {
   // event listener for button
   $(".button").on("click", () => {
+    const projectID = parseInt($("#project-title").attr("data-id"));
     const data = {
-      projectID: parseInt($("#project-title").attr("data-id")),
+      projectID: projectID,
       title: $("#story-title")
         .val()
         .trim(),
@@ -23,8 +24,8 @@ $(() => {
     $.ajax("/api/add/story", {
       type: "POST",
       data: data
-    }).then(data => {
-      window.location.href = `/project/view/${parseInt(data.project)}`;
+    }).then(() => {
+      window.location.href = `/project/view/${projectID}`;
     });
   });
 });
