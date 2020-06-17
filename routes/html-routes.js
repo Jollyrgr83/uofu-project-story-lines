@@ -24,31 +24,38 @@ module.exports = function(app) {
   });
   // dashboard route
   app.get("/dash", isAuthenticated, (req, res) => {
-    userID = req.user.id;
-    const hbsObj = { array: [{ title: "Dashboard", project: [], story: [] }] };
-    db.Project.findAll({
-      attributes: ["id", "title"],
-      where: {
-        owner: userID
-      }
-    }).then(data => {
+    const userID = req.user.id;
+    const userName = req.user.name;
+    const hbsObj = {
+      array: [
+        {
+          userID: userID,
+          userName: userName,
+          title: "Dashboard",
+          project: [],
+          story: []
+        }
+      ]
+    };
+    db.Project.findAll({ where: { owner: userID } }).then(data => {
       hbsObj.array[0].project = data.map(x => {
         return { id: x.id, title: x.title };
       });
-      db.Story.findAll({
-        attributes: ["id", "title", "project", "estimate"],
-        where: {
-          assignee: userID
-        }
-      }).then(data => {
+      db.Story.findAll({ where: { assignee: userID } }).then(data => {
         hbsObj.array[0].story = data.map(x => {
+          const startDate = new Date(x.createdAt);
+          const endDate = display.addDays(startDate, x.estimate);
+          const nowDate = new Date();
+          const daysRem = display.daysLeft(nowDate, endDate);
           return {
             id: x.id,
             title: x.title,
             projectID: x.project,
-            daysRem: x.estimate
+            daysRem: daysRem,
+            colorClass: display.colorClass(daysRem)
           };
         });
+        hbsObj.array[0].story.sort(display.compare);
         res.render("dash", hbsObj);
       });
     });
@@ -63,9 +70,7 @@ module.exports = function(app) {
       const projectID = parseInt(req.params.id);
       const userID = parseInt(req.user.id);
       const hbsObj = { array: [{ user: [], project: [], story: [] }] };
-      db.User.findAll({
-        attributes: ["id", "name"]
-      }).then(data => {
+      db.User.findAll({}).then(data => {
         hbsObj.array[0].user = data.map(x => {
           let bool = false;
           if (x.id === userID) {
@@ -73,28 +78,17 @@ module.exports = function(app) {
           }
           return { id: x.id, name: x.name, active: bool };
         });
-        db.Project.findOne({
-          attributes: ["id", "title", "description", "createdAt"],
-          where: {
-            id: projectID
-          }
-        }).then(data => {
+        db.Project.findOne({ where: { id: projectID } }).then(data => {
           hbsObj.array[0].project[0] = {
             id: data.id,
             title: data.title,
             description: data.description,
             createdAt: data.createdAt
           };
-          db.Story.findAll({
-            attributes: ["id", "title"],
-            where: {
-              project: projectID
-            }
-          }).then(data => {
+          db.Story.findAll({ where: { project: projectID } }).then(data => {
             hbsObj.array[0].story = data.map(x => {
               return { id: x.id, title: x.title };
             });
-            console.log(hbsObj.array[0].story);
             hbsObj.array[0].title = `Project ${projectID} - ${hbsObj.array[0].project[0].title}`;
             hbsObj.array[0].id = projectID;
             res.render("project", hbsObj);
