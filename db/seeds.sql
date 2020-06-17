@@ -1,12 +1,12 @@
 USE passport_demo;
 
-INSERT INTO projects (title, description, owner, createdAt, updatedAt) VALUES
+INSERT INTO Projects (title, description, owner, createdAt, updatedAt) VALUES
 ('Cherry Tree', 'Chopping down a cherry tree is one of the many stories that children learn about this Presidential figure.', 1, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 ('HBO Series', 'A popular miniseries was developed and aired on HBO revolving around the life and times of this Presidential figure.', 2, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 ('Nickel', 'While famous for many accomplishments, this Presidential figure is represented on the nickel.', 3, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 ('Uh...', 'I am not really sure what this Presidential figure accomplished while in office.', 4, '2020-06-17 14:04:27', '2020-06-17 14:04:27');
 
-INSERT INTO stories (id, title, description, status, project, assignee, reporter, estimate, createdAt, updatedAt) VALUES
+INSERT INTO Stories (id, title, description, status, project, assignee, reporter, estimate, createdAt, updatedAt) VALUES
 (1, 'Get Hatchet', 'Go into the toolshed and get the hatchet.', 0, 1, 1, 1, 0.5, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 (2, 'Chop Tree', 'Chop down the cherry tree', 1, 1, 1, 1, 1.5, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 (3, 'Do Not Lie', 'Avoid telling a lie regarding the chopping down of the cherry tree.', 2, 1, 1, 1, 3.5, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
@@ -20,7 +20,7 @@ INSERT INTO stories (id, title, description, status, project, assignee, reporter
 (11, 'Something Else', 'More words describing something else.', 2, 4, 4, 4, 2.5, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 (12, 'Another Something', 'Even more words describing something other than the other things.', 3, 4, 4, 4, 9.5, '2020-06-17 14:04:27', '2020-06-17 14:04:27');
 
-INSERT INTO tasks (title, owner, story, time, status, createdAt, updatedAt) VALUES
+INSERT INTO Tasks (title, owner, story, time, status, createdAt, updatedAt) VALUES
 ('Open Door', 1, 1, 1.5, 0, '2020-06-17 14:04:27', '2020-06-17 14:04:27'), ('Find Hatchet', 1, 1, 0.5, 0, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 ('Swing Hatchet', 1, 1, 1.5, 0, '2020-06-17 14:04:27', '2020-06-17 14:04:27'), ('Swing Again', 1, 1, 0.5, 0, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),
 ('Avoid Lie', 1, 1, 1.5, 0, '2020-06-17 14:04:27', '2020-06-17 14:04:27'), ('Do Not Lie', 1, 1, 0.5, 0, '2020-06-17 14:04:27', '2020-06-17 14:04:27'),

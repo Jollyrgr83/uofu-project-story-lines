@@ -53,14 +53,14 @@ MIT License. See LICENSE file for more information.
 
 This was a group project completed as part of the UofU Coding Bootcamp.
 
-### **Contributors include**
+### **Contributors Include:**
 
-Jason Mangin
-Tyson Hintze
-Ahmed Jalal
-Natalie Michelsen
+* Jason Mangin
+* Tyson Hintze
+* Ahmed Jalal
+* Natalie Michelsen
 
-Credit must also be noted for our instructor and TA's, as well as the author of our class curriculum and our SSM.
+* Credit must also be noted for our instructor and TA's, as well as the author of our class curriculum and our SSM.
 
 ## **Installation**
 
