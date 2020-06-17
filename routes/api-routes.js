@@ -74,14 +74,18 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
+  // Adds project
   app.post("/api/add", (req, res) => {
+    const newDate = new Date();
     db.Project.create({
-      title: "test",
+      owner: req.body.owner,
+      title: req.body.title,
       description: req.body.description,
-      owner: "me"
+      createdAt: newDate,
+      updatedAt: newDate
     })
-      .then(() => {
-        res.redirect(307, "/api/dash");
+      .then(data => {
+        res.json(data);
       })
       .catch(err => {
         res.status(401).json(err);
