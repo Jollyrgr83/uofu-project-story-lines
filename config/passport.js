@@ -29,8 +29,17 @@ passport.use(
             message: "Incorrect password."
           });
         }
+        // If the user has activated their account
+        else if (dbUser.active === false) {
+          return done(null, false, {
+            message: "Acount pending activation."
+          });
+        }
         // If none of the above, return the user
-        return done(null, dbUser);
+
+        return done(null, dbUser, {
+          message: "Login success"
+        });
       });
     }
   )
