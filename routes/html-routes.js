@@ -53,10 +53,6 @@ module.exports = function(app) {
       });
     });
   });
-  // add project route
-  app.get("/add", isAuthenticated, (req, res) => {
-    res.render("add", { title: "add" });
-  });
   // search route
   app.get("/search", isAuthenticated, (req, res) => {
     res.render("search", { title: "search" });
@@ -120,9 +116,9 @@ module.exports = function(app) {
         hbsObj.array[0].user = data.map(x => {
           return { id: x.id, name: x.name };
         });
-        db.Status.findAll({
-          attributes: ["states"]
-        }).then(data => {
+        db.Status.findAll({}).then(data => {
+          console.log(data);
+          Status.rawAttributes.states.values;
           hbsObj.array[0].status = data.map(x => {
             return { states: x.states };
           });
@@ -207,11 +203,35 @@ module.exports = function(app) {
       });
     }
   });
+  // add task route
+  app.get("/story/add/:id", isAuthenticated, (req, res) => {
+    const storyID = parseInt(req.params.id);
+    hbsObj = {
+      storyID: storyID
+    };
+    res.render("story-add", hbsObj);
+  });
 
+  // add project route
+  app.get("/add/", isAuthenticated, (req, res) => {
+    hbsObj = {
+      array: [
+        {
+          title: "",
+          user: []
+        }
+      ]
+    };
+    db.User.findAll({}).then(data => {
+      hbsObj.array[0].user = data.map(x => {
+        return { id: x.id, name: x.name };
+      });
+      hbsObj.array[0].title = "Add a Project";
+      res.render("add", hbsObj);
+    });
+  });
   // const crypto = require("crypto");
-
   // require("dotenv").config();
-
   // const nodemailer = require("nodemailer");
   // app.post("/forgotPassword", (req, res) => {
   //   if (req.body.email === "") {
