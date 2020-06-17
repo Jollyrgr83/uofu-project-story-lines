@@ -1,24 +1,67 @@
 const db = require("../models");
 const passport = require("../config/passport");
+const crypto = require("crypto");
+const emailer = require("../lib/emailer");
 
 module.exports = function(app) {
   // login route
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.json({
-      email: req.user.email,
-      id: req.user.id
-    });
+  app.post("/api/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (user !== false) {
+        req.logIn(user, err => {
+          if (err) {
+            return next(err);
+          }
+          return res.json({
+            id: user.id,
+            email: user.email,
+            message: info.message,
+            success: true
+          });
+        });
+      } else {
+        return res.json({
+          message: info.message,
+          success: false
+        });
+      }
+    })(req, res, next);
   });
   // signup route
   app.post("/api/signup", (req, res) => {
+    const token = crypto.randomBytes(20).toString("hex");
     db.User.create({
       email: req.body.email,
       password: req.body.password,
       name: req.body.name,
       phone: req.body.phone,
-      role: req.body.role
+      role: req.body.role,
+      active: 0,
+      token: token
     })
-      .then(() => {
+      .then(data => {
+        emailer.sendMail(
+          {
+            from: "Story Lines",
+            to: req.body.email,
+            subject:
+              "Thank you for signing up " +
+              req.body.name +
+              ", please activate your account",
+            html: `Hello ${req.body.name}, <br/> Please click on the link below to activate your account.<br/>
+            <a href="//localhost:8080/activate/${data.id}/${token}">ACTIVATE NOW!</a>`
+          },
+          (error, info) => {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          }
+        );
         res.redirect(307, "/api/login");
       })
       .catch(err => {

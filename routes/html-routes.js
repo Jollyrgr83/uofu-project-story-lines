@@ -376,6 +376,36 @@ module.exports = function(app) {
       res.render("add", hbsObj);
     });
   });
+
+  app.get("/activate/:id/:token", (req, res) => {
+    db.User.findOne({ where: { id: Number(req.params.id) } }).then(data => {
+      const hbsObj = {
+        user: []
+      };
+      if (data !== null) {
+        hbsObj.user.id = data.id;
+        hbsObj.user.name = data.name;
+        hbsObj.title = "Activate your account";
+        if (req.params.token === data.token) {
+          db.User.update(
+            {
+              active: 1,
+              token: null
+            },
+            { where: { id: data.id } }
+          );
+          hbsObj.message = "Your account was successfuly activated";
+        } else {
+          hbsObj.message =
+            "Something went wrong while activating your account, please check your link";
+        }
+      } else {
+        hbsObj.message =
+          "Something went wrong while activating your account, please check your link";
+      }
+      res.render("activate", hbsObj);
+    });
+  });
   // const crypto = require("crypto");
   // require("dotenv").config();
   // const nodemailer = require("nodemailer");

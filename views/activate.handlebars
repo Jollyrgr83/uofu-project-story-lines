@@ -1,0 +1,23 @@
+<head>
+    <title>story lines | {{title}}</title>
+    {{> main/head-block}}
+    <!-- login page js script -->
+    <script type="text/javascript" src="/assets/js/login.js"></script>
+    <!-- login page css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/auth.css" />
+    <!-- animate.css stylesheet (for logo animation) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+</head>
+<body class="max mx-auto">
+  <header>
+    <p class="animate__animated animate__heartBeat" id="logo">S</p>
+    <section class="title-container mx-auto">
+      <h1 class="auth-title mx-auto">Story Lines</h1>
+    </section>
+    <h2 class="title mx-auto">A simpler approach to agile project management</h2>
+  </header>
+  <main class="section-container mx-auto text-center">
+    <h5>{{ message }}</h5>
+    <a href="/login">Click here to login</a>
+  </main>
+</body>
