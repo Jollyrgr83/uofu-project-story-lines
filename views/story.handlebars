@@ -21,8 +21,8 @@
         <p class="subtitle half">Assignee</p>
       </div>
       <div class="row-container row mx-auto">
-        <p class="section-item half">{{#each array}}{{#each story}}{{reporter}}{{/each}}{{/each}}</p>
-        <p class="section-item half">{{#each array}}{{#each story}}{{assignee}}{{/each}}{{/each}}</p>
+        <p class="section-item half">{{#each array}}{{#each story}}{{reporterName}}{{/each}}{{/each}}</p>
+        <p class="section-item half">{{#each array}}{{#each story}}{{assigneeName}}{{/each}}{{/each}}</p>
       </div>   
       <div class="row-container row mx-auto">
         <p class="subtitle half">Created</p> 
@@ -33,12 +33,12 @@
         <p id="due" class="section-item half {{#each array}}{{#each story}}{{colorClass}}{{/each}}{{/each}}">{{#each array}}{{#each story}}{{due}}{{/each}}{{/each}}</p> 
       </div>
       <div class="row-container row mx-auto">
-        <p class="subtitle half">Estimated</p>
+        <p class="subtitle half">Estimate</p>
         <p class="subtitle half">Status</p>
       </div>
       <div class="row-container row mx-auto">
-        <p id="estimate" class="section-item half">{{#each array}}{{#each story}}{{estimate}}{{/each}}{{/each}}</p>  
-        <p id="status" class="section-item half">{{#each array}}{{#each story}}{{status}}{{/each}}{{/each}}</p> 
+        <p id="estimate" class="section-item half">{{#each array}}{{#each story}}{{estimate}}{{/each}}{{/each}} Days</p>  
+        <p id="status" class="section-item half">{{#each array}}{{#each story}}{{statusValue}}{{/each}}{{/each}}</p> 
       </div>
     </section>
     <!-- story details -->
