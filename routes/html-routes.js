@@ -101,8 +101,6 @@ module.exports = function(app) {
   app.get("/project/add/:id", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
-      // title, description, status, project, assignee, reporter, estimate,
-      // createdAt, updatedAt
       const hbsObj = {
         array: [
           {
