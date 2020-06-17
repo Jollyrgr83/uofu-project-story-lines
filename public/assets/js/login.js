@@ -10,7 +10,6 @@ $(document).ready(() => {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-    console.log(userData);
     if (!userData.email || !userData.password) {
       return;
     }
@@ -27,8 +26,12 @@ $(document).ready(() => {
       email: email,
       password: password
     })
-      .then(() => {
-        window.location.replace("/dash");
+      .then(result => {
+        $("#alert .msg").text(result.message);
+        $("#alert").fadeIn(500);
+        if (result.success === true) {
+          window.location.replace("/dash");
+        }
         // If there's an error, log the error
       })
       .catch(err => {
