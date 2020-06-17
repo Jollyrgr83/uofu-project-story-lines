@@ -264,7 +264,7 @@ module.exports = function(app) {
   // edit story route
   app.get("/story/edit/:id", isAuthenticated, (req, res) => {
     const storyID = parseInt(req.params.id);
-    hbsObj = { array: [{ title: "", story: [], user: [] }] };
+    const hbsObj = { array: [{ title: "", story: [], user: [] }] };
     db.User.findAll({}).then(data => {
       hbsObj.array[0].user = data.map(x => {
         return { id: x.id, name: x.name };
@@ -334,7 +334,7 @@ module.exports = function(app) {
   // add task route
   app.get("/story/add/:id", isAuthenticated, (req, res) => {
     const storyID = parseInt(req.params.id);
-    hbsObj = {
+    const hbsObj = {
       array: [
         {
           id: storyID,
@@ -360,7 +360,7 @@ module.exports = function(app) {
 
   // add project route
   app.get("/add/", isAuthenticated, (req, res) => {
-    hbsObj = {
+    const hbsObj = {
       array: [
         {
           title: "",
