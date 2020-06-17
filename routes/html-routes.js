@@ -354,8 +354,8 @@ module.exports = function(app) {
           value: db.Status.rawAttributes.states.values[i]
         });
       }
+      res.render("story-add-task", hbsObj);
     });
-    res.render("story-add-task", hbsObj);
   });
 
   // add project route
