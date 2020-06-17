@@ -2,6 +2,9 @@ $(document).ready(() => {
   // Getting references to our form and inputs
   $(".button").on("click", () => {
     const data = {
+      owner: $("#project-owner")
+        .val()
+        .trim(),
       title: $("#project-title")
         .val()
         .trim(),
@@ -15,7 +18,7 @@ $(document).ready(() => {
       type: "POST",
       data: data
     }).then(() => {
-      window.location.href = `/project/view/${projectID}`;
+      window.location.href = "/dash";
     });
   });
 });
