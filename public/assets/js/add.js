@@ -2,9 +2,7 @@ $(document).ready(() => {
   // Getting references to our form and inputs
   $(".button").on("click", () => {
     const data = {
-      owner: $("#project-owner")
-        .val()
-        .trim(),
+      owner: parseInt($("#project-owner").val()),
       title: $("#project-title")
         .val()
         .trim(),
