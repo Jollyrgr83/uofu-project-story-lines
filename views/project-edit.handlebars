@@ -10,40 +10,24 @@
   </header>
   <main>
     <section class="title-container mx-auto">
-      <h1 id="project-title" data-id={{#each array}}{{id}}{{/each}} class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
+      <h1 id="project-title" data-id={{#each array}}{{#each project}}{{id}}{{/each}}{{/each}} class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
     </section>
     <!-- title, description, status, project, assignee, reporter, estimate -->
     <section class="section-container mx-auto text-center">
       <p class="section-title">Title</p>
-      <input id="story-title" class="full" type="text" />
+      <input id="story-title" class="full" type="text" value="{{#each array}}{{#each project}}{{title}}{{/each}}{{/each}}" />
       <p class="section-title">Description</p>
-      <textarea id="story-description" class="full"></textarea>
+      <textarea id="story-description" class="full" rows="5">{{#each array}}{{#each project}}{{description}}{{/each}}{{/each}}</textarea>
       <p class="section-title">Owner</p>
       <select id="owner-select" class="full">
           {{#each array}}
             {{#each user}}
-              {{> project/add-option}}
+              {{> project/edit-option}}
             {{/each}}
           {{/each}}
-      </select>
-      <p class="section-title">Assignee</p>
-      <select id="assignee-select" class="full">
-          {{#each array}}
-            {{#each user}}
-              {{> project/add-option}}
-            {{/each}}
-          {{/each}}
-      </select>
-      <p class="section-title">Status</p>
-      <select id="status-select" class="full">
-        {{#each array}}
-          {{#each status}}
-            {{> project/add-status-option}}
-          {{/each}}
-        {{/each}}
       </select>
       <div class="row-container mx-auto text-right">
-        <button type="submit" id="submit-btn" class="button mr-0">update story</button>
+        <button type="submit" id="submit-btn" class="button mr-0">Update Project</button>
       </div>
     </section>
   </main>

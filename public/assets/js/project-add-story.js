@@ -1,23 +1,30 @@
 $(() => {
-  // event listener for arrow button clicks
+  // event listener for button
   $(".button").on("click", () => {
     const data = {
       projectID: parseInt($("#project-title").attr("data-id")),
-      storyTitle: $("#story-title")
+      title: $("#story-title")
         .val()
         .trim(),
-      storyDesc: $("#story-description")
+      description: $("#story-description")
         .val()
         .trim(),
-      ownerID: parseInt($("#owner-select").val()),
-      assigneeID: parseInt($("#assignee-select").val()),
-      statusID: parseInt($("#status-select").val())
+      reporter: parseInt($("#reporter-select").val()),
+      assignee: parseInt($("#assignee-select").val()),
+      estimate: parseFloat(
+        $("#estimate")
+          .val()
+          .trim()
+      ),
+      status: parseInt($("#status-select").val()),
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
     $.ajax("/api/add/story", {
       type: "POST",
       data: data
     }).then(data => {
-      console.log(data);
+      window.location.href = `/project/view/${parseInt(data.project)}`;
     });
   });
 });

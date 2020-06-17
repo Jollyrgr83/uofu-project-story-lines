@@ -11,6 +11,6 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false
     }
   );
-  //console.log(Status.rawAttributes.states.values[0]);
+  // console.log(Status.rawAttributes.states.values);
   return Status;
 };

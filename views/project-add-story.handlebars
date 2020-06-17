@@ -17,9 +17,11 @@
       <p class="section-title">Title</p>
       <input id="story-title" class="full" type="text" />
       <p class="section-title">Description</p>
-      <textarea id="story-description" class="full"></textarea>
-      <p class="section-title">Owner</p>
-      <select id="owner-select" class="full">
+      <textarea id="story-description" class="full" rows="5"></textarea>
+      <p class="section-title">Time Estimate</p>
+      <input id="estimate" type="number" step="0.5" class="full" />
+      <p class="section-title">Reporter</p>
+      <select id="reporter-select" class="full">
           {{#each array}}
             {{#each user}}
               {{> project/add-option}}
