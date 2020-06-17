@@ -53,7 +53,7 @@ MIT License. See LICENSE file for more information.
 
 This was a group project completed as part of the UofU Coding Bootcamp.
 
-### **Contributors include**
+### **Contributors Include:**
 
 * Jason Mangin
 * Tyson Hintze
