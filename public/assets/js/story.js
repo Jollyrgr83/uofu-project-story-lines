@@ -17,8 +17,8 @@ $(() => {
     $.ajax("/api/edit/task", {
       type: "PUT",
       data: { id: numID, status: status }
-    }).then(data => {
-      window.location.href = `/story/view/${data[0]}`;
+    }).then(() => {
+      window.location.href = `/story/view/${storyID}`;
     });
   });
 });

@@ -12,7 +12,12 @@
     <section class="title-container mx-auto">
       <h1 id="project-title" class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
     </section>
-    <section class="title-container mx-auto">
+    <section class="section-container mx-auto">
+      <p class="section-title">Title</p>
+      <input id="project-title" class="full" type="text" />
+      <p class="section-title">Description</p>
+      <textarea id="project-description" class="full" rows="5"></textarea>
+      <p class="project-owner">Owner</p>
       <select id="owner" class="full">
         {{#each array}}
           {{#each user}}
@@ -20,9 +25,9 @@
           {{/each}}
         {{/each}}
       </select>
-    </section>
-
-
+      <div class="row-container mx-auto text-right">
+        <button type="submit" id="submit-btn" class="button mr-0">Add Project</button>
+      </div>
   </section>
   </main>
 </body>

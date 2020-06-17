@@ -1,8 +1,9 @@
 $(() => {
+  const projectID = parseInt($("#project-title").attr("data-id"));
   // event listener for update button
   $(".button").on("click", () => {
     const data = {
-      projectID: parseInt($("#project-title").attr("data-id")),
+      projectID: projectID,
       title: $("#story-title")
         .val()
         .trim(),
@@ -14,8 +15,8 @@ $(() => {
     $.ajax("/api/edit/project", {
       type: "PUT",
       data: data
-    }).then(data => {
-      window.location.href = `/project/view/${data[0]}`;
+    }).then(() => {
+      window.location.href = `/project/view/${projectID}`;
     });
   });
 });
