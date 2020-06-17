@@ -101,24 +101,29 @@ module.exports = function(app) {
   app.get("/project/add/:id", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
+      // title, description, status, project, assignee, reporter, estimate,
+      // createdAt, updatedAt
       const hbsObj = {
-        array: [{ id: projectID, title: "", user: [], status: [] }]
+        array: [
+          {
+            id: projectID,
+            title: `Project ${projectID} - Add Story`,
+            user: [],
+            status: []
+          }
+        ]
       };
-      db.User.findAll({
-        attributes: ["id", "name"]
-      }).then(data => {
+      db.User.findAll({}).then(data => {
         hbsObj.array[0].user = data.map(x => {
           return { id: x.id, name: x.name };
         });
-        db.Status.findAll({}).then(data => {
-          console.log(data);
-          Status.rawAttributes.states.values;
-          hbsObj.array[0].status = data.map(x => {
-            return { states: x.states };
+        for (let i = 0; i < db.Status.rawAttributes.states.values.length; i++) {
+          hbsObj.array[0].status.push({
+            id: i,
+            value: db.Status.rawAttributes.states.values[i]
           });
-          hbsObj.array[0].title = `Project ${projectID} - Add Story`;
-          res.render("project-add-story", hbsObj);
-        });
+        }
+        res.render("project-add-story", hbsObj);
       });
     }
   });

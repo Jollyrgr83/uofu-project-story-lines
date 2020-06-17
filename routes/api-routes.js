@@ -58,8 +58,8 @@ module.exports = function(app) {
       });
     }
   });
+  // updates project
   app.put("/api/edit/project", (req, res) => {
-    console.log(req.body);
     db.Project.update(
       {
         title: req.body.title,
@@ -68,6 +68,22 @@ module.exports = function(app) {
       },
       { where: { id: req.body.projectID } }
     ).then(data => {
+      res.json(data);
+    });
+  });
+  // adds new story to project
+  app.post("/api/add/story", (req, res) => {
+    db.Story.create({
+      project: req.body.projectID,
+      title: req.body.title,
+      description: req.body.description,
+      reporter: req.body.reporter,
+      assignee: req.body.assignee,
+      estimate: req.body.estimate,
+      status: req.body.status,
+      createdAt: req.body.createdAt,
+      updatedAt: req.body.updatedAt
+    }).then(data => {
       res.json(data);
     });
   });
