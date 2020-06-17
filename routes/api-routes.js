@@ -5,11 +5,30 @@ const emailer = require("../lib/emailer");
 
 module.exports = function(app) {
   // login route
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.json({
-      email: req.user.email,
-      id: req.user.id
-    });
+  app.post("/api/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (user !== false) {
+        req.logIn(user, err => {
+          if (err) {
+            return next(err);
+          }
+          return res.json({
+            id: user.id,
+            email: user.email,
+            message: info.message,
+            success: true
+          });
+        });
+      } else {
+        return res.json({
+          message: info.message,
+          success: false
+        });
+      }
+    })(req, res, next);
   });
   // signup route
   app.post("/api/signup", (req, res) => {
