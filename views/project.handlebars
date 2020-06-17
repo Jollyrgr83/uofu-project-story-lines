@@ -19,14 +19,8 @@
         <p class="subtitle half mx-auto">Created</p>
       </div>
       <div class="row-container row mx-auto">
-        <select id="owner-select" class="half mx-auto">
-          {{#each array}}
-            {{#each user}}
-              {{> project/option}}
-            {{/each}}
-          {{/each}}
-        </select>  
-        <p id="created" class="section-item half mx-auto">{{#each array}}{{#each project}}{{createdAt}}{{/each}}{{/each}}</p>  
+        <p class="section-item half mx-auto">{{#each array}}{{#each project}}{{ownerName}}{{/each}}{{/each}}</p>
+        <p class="section-item half mx-auto">{{#each array}}{{#each project}}{{createdAt}}{{/each}}{{/each}}</p>  
       </div>   
     </section>
     <!-- project details -->

@@ -68,22 +68,22 @@ module.exports = function(app) {
   app.get("/project/view/:id/", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
-      const userID = parseInt(req.user.id);
       const hbsObj = { array: [{ user: [], project: [], story: [] }] };
       db.User.findAll({}).then(data => {
-        hbsObj.array[0].user = data.map(x => {
-          let bool = false;
-          if (x.id === userID) {
-            bool = true;
-          }
-          return { id: x.id, name: x.name, active: bool };
-        });
+        hbsObj.array[0].user = [...data];
         db.Project.findOne({ where: { id: projectID } }).then(data => {
+          let ownerName = "";
+          for (let i = 0; i < hbsObj.array[0].user.length; i++) {
+            if (hbsObj.array[0].user[i].id === data.owner) {
+              ownerName = hbsObj.array[0].user[i].name;
+            }
+          }
           hbsObj.array[0].project[0] = {
             id: data.id,
             title: data.title,
             description: data.description,
-            createdAt: data.createdAt
+            ownerName: ownerName,
+            createdAt: display.displayDate(data.createdAt)
           };
           db.Story.findAll({ where: { project: projectID } }).then(data => {
             hbsObj.array[0].story = data.map(x => {
@@ -127,22 +127,27 @@ module.exports = function(app) {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
       const hbsObj = {
-        array: [{ id: projectID, title: "", user: [], status: [] }]
+        array: [{ title: "", project: [], user: [], status: [] }]
       };
-      db.User.findAll({
-        attributes: ["id", "name"]
-      }).then(data => {
-        hbsObj.array[0].user = data.map(x => {
-          return { id: x.id, name: x.name };
+      db.Project.findOne({ where: { id: projectID } }).then(data => {
+        hbsObj.array[0].project.push({
+          id: data.id,
+          title: data.title,
+          description: data.description,
+          owner: data.owner,
+          createdAt: display.displayDate(data.createdAt)
         });
-        db.Status.findAll({
-          attributes: ["states"]
-        }).then(data => {
-          hbsObj.array[0].status = data.map(x => {
-            return { states: x.states };
+        db.User.findAll({}).then(data => {
+          hbsObj.array[0].user = data.map(x => {
+            let bool = false;
+            if (x.id === hbsObj.array[0].project[0].owner) {
+              bool = true;
+            }
+            return { id: x.id, name: x.name, active: bool };
           });
-          hbsObj.array[0].title = `Project ${projectID} - Edit Story`;
-          res.render("project-edit-story", hbsObj);
+          hbsObj.array[0].status = [...db.Status.rawAttributes.states.values];
+          hbsObj.array[0].title = `Edit Project ${projectID} - ${hbsObj.array[0].project[0].title}`;
+          res.render("project-edit", hbsObj);
         });
       });
     }
