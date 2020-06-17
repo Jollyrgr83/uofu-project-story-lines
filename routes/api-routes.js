@@ -130,4 +130,43 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+  // updates story
+  app.put("/api/edit/story", (req, res) => {
+    db.Story.update(
+      {
+        title: req.body.title,
+        description: req.body.description,
+        reporter: req.body.reporter,
+        assignee: req.body.assignee,
+        estimate: req.body.estimate,
+        status: req.body.status
+      },
+      { where: { id: req.body.id } }
+    ).then(data => {
+      res.json(data);
+    });
+  });
+  // updates task
+  app.put("/api/edit/task", (req, res) => {
+    db.Task.update(
+      { status: req.body.status },
+      { where: { id: req.body.id } }
+    ).then(data => {
+      res.json(data);
+    });
+  });
+  // adds new task to story
+  app.post("/api/add/task", (req, res) => {
+    db.Task.create({
+      story: req.body.storyID,
+      title: req.body.title,
+      owner: req.body.owner,
+      time: req.body.time,
+      status: req.body.status,
+      createdAt: req.body.createdAt,
+      updatedAt: req.body.updatedAt
+    }).then(data => {
+      res.json(data);
+    });
+  });
 };

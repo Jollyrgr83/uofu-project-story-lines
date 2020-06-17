@@ -9,4 +9,16 @@ $(() => {
       window.location.href = `/story/edit/${storyID}`;
     }
   });
+  // event listener for task status menu change
+  $(document).on("change", ".task-status", event => {
+    const clickID = $(event.target).attr("id");
+    const numID = parseInt(clickID.split("-")[3]);
+    const status = parseInt($(event.target).val());
+    $.ajax("/api/edit/task", {
+      type: "PUT",
+      data: { id: numID, status: status }
+    }).then(data => {
+      window.location.href = `/story/view/${data[0]}`;
+    });
+  });
 });

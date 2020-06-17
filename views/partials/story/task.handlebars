@@ -1,11 +1,9 @@
 <div class="row-container row mx-auto">
-  <p id="days" class="section-item short {{color-class}}">{{days}}</p>
-  <p id="task-name" class="section-item medium-short-1">{{title}}</p>
-  <select id="task-status-select" class="medium-short-2">
-    {{#each array}}
-      {{#each status}}
+  <p class="section-item short {{colorClass}}">{{daysRem}}</p>
+  <p id="task-name" class="section-item medium-short-1" data-id="{{id}}">{{title}}</p>
+  <select id="task-status-select-{{id}}" class="medium-short-2 task-status">
+    {{#each status}}
         {{> story/status-option}}
-      {{/each}}
     {{/each}}
   </select>
 </div>

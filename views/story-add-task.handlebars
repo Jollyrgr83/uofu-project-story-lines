@@ -2,7 +2,7 @@
     <title>story lines | {{#each array}}{{title}}{{/each}}</title>
     {{> main/head-block}}
     <!-- story page js script -->
-    <script type="text/javascript" src="/assets/js/project-add-story.js"></script>
+    <script type="text/javascript" src="/assets/js/story-add-task.js"></script>
 </head>
 <body class="max mx-auto">
   <header>
@@ -10,25 +10,15 @@
   </header>
   <main>
     <section class="title-container mx-auto">
-      <h1 id="project-title" data-id={{#each array}}{{id}}{{/each}} class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
+      <h1 id="story-title" data-id={{#each array}}{{id}}{{/each}} class="title mx-auto">{{#each array}}{{title}}{{/each}}</h1>
     </section>
     <section class="section-container mx-auto text-center">
       <p class="section-title">Title</p>
-      <input id="story-title" class="full" type="text" />
-      <p class="section-title">Description</p>
-      <textarea id="story-description" class="full" rows="5"></textarea>
+      <input id="task-title" class="full" type="text" />
       <p class="section-title">Time Estimate</p>
-      <input id="estimate" type="number" step="0.5" class="full" />
-      <p class="section-title">Reporter</p>
-      <select id="reporter-select" class="full">
-          {{#each array}}
-            {{#each user}}
-              {{> project/add-option}}
-            {{/each}}
-          {{/each}}
-      </select>
-      <p class="section-title">Assignee</p>
-      <select id="assignee-select" class="full">
+      <input id="time" type="number" step="0.5" class="full" />
+      <p class="section-title">Owner</p>
+      <select id="owner-select" class="full">
           {{#each array}}
             {{#each user}}
               {{> project/add-option}}
@@ -44,7 +34,7 @@
         {{/each}}
       </select>
       <div class="row-container mx-auto text-right">
-        <button type="submit" id="submit-btn" class="button mr-0">Add Story</button>
+        <button type="submit" id="submit-btn" class="button mr-0">Add Task</button>
       </div>
     </section>
   </main>
