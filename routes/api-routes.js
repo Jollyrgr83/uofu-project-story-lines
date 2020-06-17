@@ -52,7 +52,7 @@ module.exports = function(app) {
               req.body.name +
               ", please activate your account",
             html: `Hello ${req.body.name}, <br/> Please click on the link below to activate your account.<br/>
-            <a href="//localhost:8080/activate/${data.id}/${token}">ACTIVATE NOW!</a>`
+            <a href="https://peaceful-scrubland-88128.herokuapp.com/activate/${data.id}/${token}">ACTIVATE NOW!</a>`
           },
           (error, info) => {
             if (error) {
