@@ -127,7 +127,7 @@ module.exports = function(app) {
       });
     }
   });
-  // edit story route
+  // edit project route
   app.get("/project/edit/:id", isAuthenticated, (req, res) => {
     if (req.params.id && !isNaN(parseInt(req.params.id))) {
       const projectID = parseInt(req.params.id);
@@ -260,6 +260,76 @@ module.exports = function(app) {
         });
       });
     }
+  });
+  // edit story route
+  app.get("/story/edit/:id", isAuthenticated, (req, res) => {
+    const storyID = parseInt(req.params.id);
+    hbsObj = { array: [{ title: "", story: [], user: [] }] };
+    db.User.findAll({}).then(data => {
+      hbsObj.array[0].user = data.map(x => {
+        return { id: x.id, name: x.name };
+      });
+      db.Story.findOne({ where: { id: storyID } }).then(data => {
+        const statusArr = [];
+        for (let i = 0; i < db.Status.rawAttributes.states.values.length; i++) {
+          if (i === data.status) {
+            statusArr.push({
+              id: i,
+              value: db.Status.rawAttributes.states.values[i],
+              active: true
+            });
+          } else {
+            statusArr.push({
+              id: i,
+              value: db.Status.rawAttributes.states.values[i],
+              active: false
+            });
+          }
+        }
+        const reporterArr = [];
+        const assigneeArr = [];
+        for (let i = 0; i < hbsObj.array[0].user.length; i++) {
+          if (hbsObj.array[0].user[i].id === data.reporter) {
+            reporterArr.push({
+              id: hbsObj.array[0].user[i].id,
+              name: hbsObj.array[0].user[i].name,
+              active: true
+            });
+          } else {
+            reporterArr.push({
+              id: hbsObj.array[0].user[i].id,
+              name: hbsObj.array[0].user[i].name,
+              active: false
+            });
+          }
+          if (hbsObj.array[0].user[i].id === data.assignee) {
+            assigneeArr.push({
+              id: hbsObj.array[0].user[i].id,
+              name: hbsObj.array[0].user[i].name,
+              active: true
+            });
+          } else {
+            assigneeArr.push({
+              id: hbsObj.array[0].user[i].id,
+              name: hbsObj.array[0].user[i].name,
+              active: false
+            });
+          }
+        }
+        hbsObj.array[0].story.push({
+          id: data.id,
+          title: data.title,
+          description: data.description,
+          reporter: [...reporterArr],
+          assignee: [...assigneeArr],
+          project: data.project,
+          estimate: data.estimate,
+          status: [...statusArr]
+        });
+        hbsObj.array[0].title = `Edit Project ${hbsObj.array[0].story[0].project} - Story ${storyID}`;
+        res.render("story-edit", hbsObj);
+      });
+    });
   });
   // add task route
   app.get("/story/add/:id", isAuthenticated, (req, res) => {

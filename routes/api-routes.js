@@ -88,9 +88,20 @@ module.exports = function(app) {
     });
   });
   // updates story
-  app.post("/api/edit/story", (req, res) => {
-    console.log(req);
-    console.log(res);
+  app.put("/api/edit/story", (req, res) => {
+    db.Story.update(
+      {
+        title: req.body.title,
+        description: req.body.description,
+        reporter: req.body.reporter,
+        assignee: req.body.assignee,
+        estimate: req.body.estimate,
+        status: req.body.status
+      },
+      { where: { id: req.body.id } }
+    ).then(data => {
+      res.json(data);
+    });
   });
   // updates task
   app.put("/api/edit/task", (req, res) => {
