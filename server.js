@@ -1,16 +1,14 @@
-// Requiring necessary npm packages
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
-// Requiring passport as we've configured it
+// passport configuration
 const passport = require("./config/passport");
-
-// Setting up port and requiring models for syncing
+// setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
 // const nodemailer = require("nodemailer");
 
-// Creating express app and configuring middleware needed for authentication
+// dreating express app and configuring middleware needed for authentication
 const app = express();
 app.use((req, res, next) => {
   res.set(
@@ -22,7 +20,7 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-// We need to use sessions to keep track of our user's login status
+// using sessions to keep track of our user's login status
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
@@ -31,17 +29,7 @@ app.use(passport.session());
 // handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-// custom handlebars helpers
-// exphbs.Handlebars.registerHelper("daysLeft", value => {
-//   if (value <= 1) {
-//     return "red";
-//   }
-//   if (value <= 3) {
-//     return "yellow";
-//   }
-//   return "green";
-// });
-// Requiring our routes
+// requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
@@ -68,7 +56,7 @@ require("./routes/api-routes.js")(app);
 //   }
 // });
 
-// Syncing our database and logging a message to the user upon success
+// syncing our database and logging a message to the user upon success
 db.sequelize.sync({}).then(() => {
   app.listen(PORT, () => {
     console.log(
