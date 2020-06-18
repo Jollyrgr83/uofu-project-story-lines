@@ -4,7 +4,6 @@ const db = require("../models");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 // import library functions
 const display = require("../lib/display");
-const { query } = require("express");
 // html routes
 module.exports = function(app) {
   app.get("/", (req, res) => {
