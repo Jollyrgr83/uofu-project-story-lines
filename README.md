@@ -71,10 +71,6 @@ There are currently no tests for this app.
 
 ## **Video of Deployed Application**
 
-<<<<<<< HEAD
-[Video Demonstration](https://drive.google.com/file/d/14OGu3DZ7D_X_BcPv77HW5zV-VxBm53XE/view)
-=======
-[Video Demonstration](insertexternallinkhere)
+[Video Demonstration](https://drive.google.com/file/d/14OGu3DZ7D_X_BcPv77HW5zV-VxBm53XE/view?usp=sharing)
 
-![Deployed Application](/public/assets/images/(save in folder structure))
->>>>>>> c0544ed546c00caea1343ab5bee017ee2d9fbbb9
+![Deployed Application](/public/assets/images/video.gif)
