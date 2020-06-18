@@ -55,10 +55,10 @@ This was a group project completed as part of the UofU Coding Bootcamp.
 
 ### **Contributors Include:**
 
-* Jason Mangin
-* Tyson Hintze
-* Ahmed Jalal
-* Natalie Michelsen
+* [Jason Mangin](https://github.com/Jollyrgr83)
+* [Tyson Hintze](https://github.com/hintzetyson)
+* [Ahmed Jalal](https://github.com/ahmedjalal93)
+* [Natalie Michelsen](https://github.com/nataliemichelsen)
 
 * Credit must also be noted for our instructor and TA's, as well as the author of our class curriculum and our SSM.
 
