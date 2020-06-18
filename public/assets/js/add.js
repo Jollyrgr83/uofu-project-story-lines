@@ -3,7 +3,7 @@ $(document).ready(() => {
   $(".button").on("click", () => {
     const data = {
       owner: parseInt($("#project-owner").val()),
-      title: $("#project-title")
+      title: $("#title")
         .val()
         .trim(),
       description: $("#project-description")

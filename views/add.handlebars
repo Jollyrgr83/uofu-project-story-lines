@@ -14,11 +14,11 @@
     </section>
     <section class="section-container mx-auto">
       <p class="section-title">Title</p>
-      <input id="project-title" class="full" type="text" />
+      <input id="title" class="full" type="text" />
       <p class="section-title">Description</p>
       <textarea id="project-description" class="full" rows="5"></textarea>
       <p class="project-owner">Owner</p>
-      <select id="owner" class="full">
+      <select id="project-owner" class="full">
         {{#each array}}
           {{#each user}}
             {{> add/option}}
