@@ -129,6 +129,7 @@ svg > * {
   background-color: whitesmoke;
   font-size: 16px;
   box-shadow: 1px 1px 5px navy;
+  text-align: start;
 }
 /* widths*/
 .full {
