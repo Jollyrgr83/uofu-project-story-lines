@@ -62,5 +62,13 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+
+  User.addHook("beforeValidate", user => {
+    user.password = bcrypt.hashSync(
+      user.password,
+      bcrypt.genSaltSync(10),
+      null
+    );
+  });
   return User;
 };

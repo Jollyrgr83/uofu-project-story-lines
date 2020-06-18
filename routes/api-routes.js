@@ -173,4 +173,61 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+  //reset password
+  app.put("/api/reset/send", (req, res) => {
+    const token = crypto.randomBytes(20).toString("hex");
+    db.User.findOne({ where: { email: req.body.email.trim() } })
+      .then(data => {
+        db.User.update(
+          {
+            token: token
+          },
+          { where: { id: data.id } }
+        );
+        emailer.sendMail(
+          {
+            from: "Story Lines",
+            to: data.email,
+            subject:
+              "Your reset password form " +
+              data.name +
+              ", this is your reset password form",
+            html: `Hello ${data.name}, <br/> Please click on the link below to reset your password.<br/>
+            <a href="https://peaceful-scrubland-88128.herokuapp.com/reset/${data.id}/${token}">RESET NOW!</a>`
+          },
+          (error, info) => {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          }
+        );
+        res.json(data);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.put("/api/reset/password", (req, res) => {
+    db.User.findOne({ where: { id: Number(req.body.id) } })
+      .then(data => {
+        if (req.body.token === data.token) {
+          db.User.update(
+            {
+              password: req.body.password,
+              token: null
+            },
+            { where: { id: data.id } }
+          );
+          return res.json(true);
+        }
+        return res.json(false);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(401).json(err);
+      });
+  });
 };
