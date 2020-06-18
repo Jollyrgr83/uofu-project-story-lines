@@ -60,9 +60,49 @@ module.exports = function(app) {
       });
     });
   });
-  // search route
-  app.get("/search", isAuthenticated, (req, res) => {
-    res.render("search", { title: "search" });
+  //search for projects and stories
+  app.get("/search/:query?", isAuthenticated, (req, res) => {
+    const Op = db.Sequelize.Op;
+    const hbsObj = {};
+    hbsObj.title = "Search " + req.params.query;
+    if (req.params.query) {
+      db.Project.findAll({
+        where: {
+          title: {
+            [Op.like]: "%" + req.params.query + "%"
+          }
+        }
+      }).then(data => {
+        hbsObj.projects = data.map(x => {
+          return { id: x.id, title: x.title };
+        });
+        db.Story.findAll({
+          where: {
+            title: {
+              [Op.like]: "%" + req.params.query + "%"
+            }
+          }
+        }).then(data => {
+          hbsObj.stories = data.map(x => {
+            const startDate = new Date(x.createdAt);
+            const endDate = display.addDays(startDate, x.estimate);
+            const nowDate = new Date();
+            const daysRem = display.daysLeft(nowDate, endDate);
+            return {
+              id: x.id,
+              title: x.title,
+              projectID: x.project,
+              daysRem: daysRem,
+              colorClass: display.colorClass(daysRem)
+            };
+          });
+          console.log(hbsObj);
+          return res.render("search", hbsObj);
+        });
+      });
+    } else {
+      return res.render("search", { title: "search" });
+    }
   });
   // view project route
   app.get("/project/view/:id/", isAuthenticated, (req, res) => {
