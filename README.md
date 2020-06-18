@@ -73,4 +73,4 @@ There are currently no tests for this app.
 
 [Video Demonstration](https://drive.google.com/file/d/14OGu3DZ7D_X_BcPv77HW5zV-VxBm53XE/view?usp=sharing)
 
-![Deployed Application](/public/assets/images/video.webm)
+![Deployed Application](/public/assets/images/video.gif)
