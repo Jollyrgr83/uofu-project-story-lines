@@ -10,7 +10,7 @@
   </header>
   <main>
     <section class="title-container mx-auto">
-      <h1 class="title mx-auto">Search</h1>
+      <h1 class="title mx-auto">{{title}}</h1>
     </section>
     <section class="section-container mx-auto text-center">
       <div class="row-container row mx-auto">
@@ -21,7 +21,17 @@
           </svg>
       </div>
     </section>
-    <div id="project-results"></div>
-    <div id="story-results"></div>
+    <section class="section-container mx-auto text-center">
+      <p class="section-title">Active Projects</p>
+      {{#each projects}}
+        {{> dash/dash-project}}
+      {{/each}}
+    </section>
+    <section class="section-container mx-auto text-center">
+      <p class="section-title">Active Stories</p>
+      {{#each stories}}
+        {{> dash/dash-story}}
+      {{/each}}
+    </section>
   </main>
 </body>
