@@ -4,6 +4,7 @@
 
 * Project Description
 * Project Objective
+* User Story
 * Usage
 * License
 * Contributors
