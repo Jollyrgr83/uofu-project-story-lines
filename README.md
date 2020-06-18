@@ -3,9 +3,8 @@
 ## **Table of Contents**
 
 * Project Description
-* Requirements for Assignment
-* Instructions for Assignment
 * Project Objective
+* User Story
 * Usage
 * License
 * Contributors
@@ -72,4 +71,6 @@ There are currently no tests for this app.
 
 ## **Video of Deployed Application**
 
-[Video Demonstration](insertlinkhere)
+[Video Demonstration](insertexternallinkhere)
+
+![Deployed Application](/public/assets/images/(save in folder structure))
