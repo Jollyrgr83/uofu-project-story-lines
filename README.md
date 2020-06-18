@@ -3,9 +3,8 @@
 ## **Table of Contents**
 
 * Project Description
-* Requirements for Assignment
-* Instructions for Assignment
 * Project Objective
+* User Story
 * Usage
 * License
 * Contributors
@@ -55,10 +54,10 @@ This was a group project completed as part of the UofU Coding Bootcamp.
 
 ### **Contributors Include:**
 
-* Jason Mangin
-* Tyson Hintze
-* Ahmed Jalal
-* Natalie Michelsen
+* [Jason Mangin](https://github.com/Jollyrgr83)
+* [Tyson Hintze](https://github.com/hintzetyson)
+* [Ahmed Jalal](https://github.com/ahmedjalal93)
+* [Natalie Michelsen](https://github.com/nataliemichelsen)
 
 * Credit must also be noted for our instructor and TA's, as well as the author of our class curriculum and our SSM.
 
@@ -72,4 +71,6 @@ There are currently no tests for this app.
 
 ## **Video of Deployed Application**
 
-[Video Demonstration](insertlinkhere)
+[Video Demonstration](https://drive.google.com/file/d/14OGu3DZ7D_X_BcPv77HW5zV-VxBm53XE/view?usp=sharing)
+
+![Deployed Application](/public/assets/images/video.gif)
