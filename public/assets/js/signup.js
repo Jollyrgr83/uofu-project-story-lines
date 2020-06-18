@@ -22,8 +22,7 @@ $(document).ready(() => {
       !userData.email ||
       !userData.password ||
       !userData.name ||
-      !userData.phone ||
-      !userData.role
+      !userData.phone
     ) {
       $("#alert .msg").text("Missing user details");
       $("#alert").fadeIn(500);
