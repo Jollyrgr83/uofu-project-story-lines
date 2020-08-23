@@ -105,3 +105,13 @@
   background-color: lightslategray;
   color: navy;
 }
+/* activation message */
+.message-container {
+  padding: 10px;
+  margin: 10px;
+  width: 95%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px lightslategray;
+  background-color: navy;
+  color: lightgray;
+}
